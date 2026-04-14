@@ -92,7 +92,7 @@ export default function Roadmap() {
            
            <div className="neo-box bg-white p-10 space-y-8 min-w-[400px] shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
               <div className="space-y-4">
-                 <label className="text-[10px] font-black uppercase text-[#2563EB]">Target Career Node</label>
+                 <label className="text-[10px] font-black uppercase text-[#2563EB]">Target Career Goal</label>
                  <input type="text" value={query.role} onChange={e => setQuery({...query, role: e.target.value})} className="neo-input text-lg" placeholder="e.g. DATA SCIENTIST" />
               </div>
               <div className="grid grid-cols-2 gap-6">
@@ -117,7 +117,7 @@ export default function Roadmap() {
           {steps.length === 0 && !loading && !safetyError && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.2 }} className="text-center py-40 border-8 border-dashed border-black/10 flex flex-col items-center gap-8 grayscale">
                <Search className="w-24 h-24" />
-               <p className="text-4xl font-black uppercase tracking-tighter italic">Enter Target Node to Architect Path</p>
+               <p className="text-4xl font-black uppercase tracking-tighter italic">Define Career Goal to Generate Your Roadmap</p>
             </motion.div>
           )}
 
