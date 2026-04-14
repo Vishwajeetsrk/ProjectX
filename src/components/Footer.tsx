@@ -16,7 +16,7 @@ export default function Footer() {
           <Link href="/" className="inline-block">
             <div className="flex items-center text-3xl font-black italic tracking-tighter">
               <span className="text-[#2563EB]">Dream</span>
-              <span className="text-black">Sync</span>
+              <span className="text-black ml-1">Sync</span>
             </div>
           </Link>
           <p className="text-xs font-bold leading-relaxed text-gray-400 max-w-xs uppercase">
@@ -30,7 +30,7 @@ export default function Footer() {
           <ul className="space-y-3 text-[10px] font-bold text-gray-500 uppercase">
             <li><Link href="/resume-builder" className="hover:text-black">Resume Builder</Link></li>
             <li><Link href="/ats-check" className="hover:text-black">ATS Check</Link></li>
-            <li><Link href="/roadmap" className="hover:text-black">Career Roadmap</Link></li>
+            <li><Link href="/roadmap" className="hover:text-black">AI Roadmap</Link></li>
             <li><Link href="/portfolio" className="hover:text-black">Portfolio Gen</Link></li>
             <li><Link href="/linkedin" className="hover:text-black">LinkedIn Optimizer</Link></li>
           </ul>
@@ -68,7 +68,7 @@ export default function Footer() {
       
       {/* Bottom Meta */}
       <div className="max-w-7xl mx-auto mt-24 pt-10 border-t-2 border-black/5 flex justify-between items-center text-[10px] font-black uppercase text-gray-400">
-        <span>© {currentYear} DreamSync. All rights reserved.</span>
+        <span>© {currentYear} Dream Sync. All rights reserved.</span>
         <div className="flex gap-8">
           <Link href="/privacy" className="hover:text-black">Privacy</Link>
           <Link href="/terms" className="hover:text-black">Terms</Link>

@@ -83,7 +83,7 @@ export default function Roadmap() {
                  <div className="p-2 bg-black text-white shadow-[3px_3px_0px_0px_rgba(37,99,235,1)]">
                     <Map className="w-8 h-8" />
                  </div>
-                 <span className="text-xs font-black uppercase tracking-[0.4em] text-black/40">Path (Career Roadmap)</span>
+                 <span className="text-xs font-black uppercase tracking-[0.4em] text-black/40">Path (Goals)</span>
               </div>
               <h1 className="text-6xl md:text-[100px] font-black tracking-tighter leading-none text-black">
                   Path

@@ -12,10 +12,10 @@ const tools = [
   { name: 'RESUME BUILDER', href: '/resume-builder', icon: FileText, color: 'bg-green-100 text-green-700', desc: 'Craft a new ATS-friendly blueprint.' },
   { name: 'ATS CHECKER', href: '/ats-check', icon: CheckCircle, color: 'bg-purple-100 text-purple-700', desc: 'Scan existing resumes for optimization.' },
   { name: 'PORTFOLIO GEN', href: '/portfolio', icon: Sparkles, color: 'bg-pink-100 text-pink-700', desc: 'Auto-generate a personal site.' },
-  { name: 'CAREER ROADMAP', href: '/roadmap', icon: Briefcase, color: 'bg-amber-100 text-amber-700', desc: 'Plan your learning timeline.' },
+  { name: 'AI ROADMAP', href: '/roadmap', icon: Briefcase, color: 'bg-amber-100 text-amber-700', desc: 'Plan your learning timeline.' },
   { name: 'ROADMAPS & DOCS', href: '/documents', icon: BookOpen, color: 'bg-blue-100 text-blue-700', desc: 'Detailed guides & free resources.' },
   { name: 'LINKEDIN PRO', href: '/linkedin', icon: Link2, color: 'bg-[#0A66C2]/10 text-blue-600', desc: 'AI headlines & keyword optimization.' },
-  { name: 'CAREER AGENT', href: '/career-agent', icon: Brain, color: 'bg-violet-100 text-violet-700', desc: 'AI guidance & real-time jobs.' },
+  { name: 'AI CAREER AGENT', href: '/career-agent', icon: Brain, color: 'bg-violet-100 text-violet-700', desc: 'AI guidance & real-time jobs.' },
   { name: 'MENTAL HEALTH AI', href: '/mental-health', icon: HeartHandshake, color: 'bg-rose-100 text-rose-700', desc: 'Support & emotional equilibrium.' },
 ];
 

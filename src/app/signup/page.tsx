@@ -83,8 +83,14 @@ export default function Signup() {
       >
         <div className="neo-box p-12 bg-white space-y-10">
           <div className="text-center space-y-4">
-            <div className="inline-block p-4 bg-[#FACC15] text-black border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-4">
-               <ShieldCheck className="w-10 h-10" />
+            <div className="flex flex-col items-center gap-4 mb-4">
+               <div className="flex items-center text-3xl font-black italic tracking-tighter">
+                  <span className="text-[#2563EB]">Dream</span>
+                  <span className="text-black ml-1">Sync</span>
+               </div>
+               <div className="inline-block p-4 bg-[#FACC15] text-black border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                  <ShieldCheck className="w-10 h-10" />
+               </div>
             </div>
             <h1 className="text-4xl font-black tracking-tighter text-black">Create Identity_</h1>
             <p className="text-gray-400 text-xs tracking-[0.2em]">Synchronize with the Grid</p>

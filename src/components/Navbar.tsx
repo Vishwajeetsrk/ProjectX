@@ -28,8 +28,8 @@ export default function Navbar() {
   };
 
   const featureLinks = [
-    { name: 'CAREER ROADMAP', href: '/roadmap' },
-    { name: 'CAREER AGENT', href: '/career-agent' },
+    { name: 'AI ROADMAP', href: '/roadmap' },
+    { name: 'AI CAREER AGENT', href: '/career-agent' },
     { name: 'RESUME BUILDER', href: '/resume-builder' },
     { name: 'ATS CHECK', href: '/ats-check' },
     { name: 'IKIGAI FINDER', href: '/ikigai' },
@@ -47,7 +47,7 @@ export default function Navbar() {
         <Link href="/" className="shrink-0 inline-block group">
           <div className="flex items-center text-3xl font-black italic tracking-tighter">
             <span className="text-[#2563EB]">Dream</span>
-            <span className="text-black">Sync</span>
+            <span className="text-black ml-1">Sync</span>
           </div>
         </Link>
 
