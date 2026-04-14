@@ -284,7 +284,7 @@ export default function CareerAgent() {
                <span className="text-xs font-black uppercase tracking-[0.4em] text-black/40">AI Agent (Chatbot)</span>
             </div>
             <h1 className="text-6xl md:text-[80px] font-black tracking-tighter leading-none text-black">
-               DreamSync Strategist v2
+               AI Guide For Career
             </h1>
             <p className="text-xl md:text-3xl text-black/40 font-black tracking-tighter uppercase mt-2">
                Active Career Sync
