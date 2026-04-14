@@ -94,7 +94,7 @@ const DEFAULT_RESUME: ResumeData = {
 
 export default function ResumeBuilder() {
   const [data, setData] = useState<ResumeData>(DEFAULT_RESUME);
-  const [template, setTemplate] = useState<'minimal' | 'modern' | 'professional'>('professional');
+  const [template, setTemplate] = useState<'google_swe' | 'microsoft_sde' | 'faang_standard'>('faang_standard');
   const [atsAnalysis, setAtsAnalysis] = useState<ATSAnalysis | null>(null);
   const [isParsing, setIsParsing] = useState(false);
   const componentRef = useRef<HTMLDivElement>(null);
@@ -429,9 +429,9 @@ export default function ResumeBuilder() {
         <div className="border-t-8 border-black pt-12 space-y-8">
            <h3 className="text-xs font-black uppercase tracking-[0.4em] text-black">SELECT TEMPLATE</h3>
            <div className="grid grid-cols-3 gap-6">
-              {['minimal', 'professional', 'modern'].map((t) => (
+              {['google_swe', 'microsoft_sde', 'faang_standard'].map((t) => (
                 <button key={t} onClick={() => setTemplate(t as any)} className={`neo-btn-secondary py-4 text-[10px] uppercase font-black ${template === t ? 'bg-black text-white' : ''}`}>
-                   {t}
+                   {t.replace('_', ' ')}
                 </button>
               ))}
            </div>

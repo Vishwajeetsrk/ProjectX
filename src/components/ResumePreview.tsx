@@ -51,31 +51,40 @@ export interface ResumeData {
 
 interface ResumePreviewProps {
   data: ResumeData;
-  template?: 'minimal' | 'modern' | 'professional';
+  template?: 'google_swe' | 'microsoft_sde' | 'faang_standard';
 }
 
-const ResumePreview = React.forwardRef<HTMLDivElement, ResumePreviewProps>(({ data, template = 'professional' }, ref) => {
+const ResumePreview = React.forwardRef<HTMLDivElement, ResumePreviewProps>(({ data, template = 'faang_standard' }, ref) => {
   const { personalInfo, summary, skills, experience, education, projects, achievements, languages, certifications, extra } = data;
 
-  // Professional ATS-friendly styles
-  const sectionTitleClass = "text-sm font-bold uppercase tracking-widest border-b border-gray-300 pb-1 mb-3 mt-6";
-  const bulletClass = "text-sm text-gray-700 leading-relaxed mb-1 list-disc ml-4";
-  const subTitleClass = "text-[15px] font-bold text-gray-900";
-  const dateClass = "text-sm font-medium text-gray-600 italic";
-  const textClass = "text-sm text-gray-700 leading-relaxed";
+  // Template Specific Styles
+  const isGoogle = template === 'google_swe';
+  const isMicrosoft = template === 'microsoft_sde';
+  
+  const sectionTitleClass = isGoogle 
+    ? "text-[15px] font-semibold text-blue-800 uppercase tracking-wide border-b-2 border-blue-800 pb-1 mb-2 mt-4" 
+    : isMicrosoft 
+      ? "text-[14px] font-bold text-gray-800 uppercase tracking-widest border-b border-gray-400 pb-1 mb-3 mt-5"
+      : "text-sm font-bold uppercase tracking-widest border-b border-gray-300 pb-1 mb-3 mt-6";
+
+  const bulletClass = "text-[13px] text-gray-800 leading-snug mb-1 list-disc ml-5 pl-1";
+  const subTitleClass = "text-[14px] font-bold text-gray-900";
+  const dateClass = isGoogle ? "text-[13px] font-semibold text-blue-700" : "text-[13px] font-medium text-gray-600";
+  const textClass = "text-[13px] text-gray-800 leading-relaxed";
+  const containerClass = `bg-white text-black px-10 py-12 shadow-lg mx-auto w-full max-w-[800px] min-h-[1123px] ${isGoogle ? 'font-sans' : isMicrosoft ? 'font-serif' : 'font-sans'}`;
 
   return (
     <div 
       ref={ref}
-      className={`bg-white text-black p-10 shadow-lg mx-auto w-full max-w-[800px] min-h-[1123px] font-sans ${template === 'modern' ? 'border-t-8 border-black' : ''}`}
+      className={containerClass}
       id="resume-content"
     >
       {/* Header */}
-      <header className="text-center mb-8">
-        <h1 className="text-4xl font-extrabold uppercase tracking-tight mb-2">{personalInfo.fullName || 'YOUR NAME'}</h1>
-        <p className="text-lg font-semibold text-gray-700 mb-3 tracking-wide">{personalInfo.role || 'Professional Role'}</p>
+      <header className={`text-center ${isGoogle ? 'mb-4' : 'mb-6'}`}>
+        <h1 className={`text-3xl uppercase tracking-tight mb-1 ${isGoogle ? 'font-bold text-blue-900' : 'font-extrabold text-gray-900'}`}>{personalInfo.fullName || 'YOUR NAME'}</h1>
+        <p className={`text-sm mb-2 ${isGoogle ? 'font-medium text-gray-700' : 'font-semibold text-gray-700 tracking-wide'}`}>{personalInfo.role || 'Professional Role'}</p>
         
-        <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-1 text-sm font-medium text-gray-600">
+        <div className="flex flex-wrap justify-center items-center gap-x-3 gap-y-1 text-[12px] font-medium text-gray-700">
           {personalInfo.phone && (
             <span className="flex items-center gap-1">
               <Phone className="w-3.5 h-3.5" /> {personalInfo.phone}
