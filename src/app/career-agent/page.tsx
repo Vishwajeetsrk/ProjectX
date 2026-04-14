@@ -52,12 +52,12 @@ interface Message {
 
 // ── Suggested Prompts ─────────────────────────────────────────────
 const suggestions = [
-  "I'm a CSE fresher. What roles should I target?",
-  "Compare salary: service company vs startup India",
-  "How to become a Data Scientist in 6 months?",
-  "Best companies hiring React developers in 2026",
-  "GATE vs direct job — which is better?",
-  "I want to switch from TCS to a product company",
+  "Fix Profile Photo",
+  "Fix LinkedIn Highlights",
+  "ATS Score Check",
+  "Build New Resume",
+  "Career Roadmap 2026",
+  "Ikigai Analysis",
 ];
 
 // ── Flowchart ─────────────────────────────────────────────────────
@@ -279,13 +279,13 @@ export default function CareerAgent() {
           transition={{ repeat: Infinity, duration: 35, ease: "linear" }}
           className="flex whitespace-nowrap gap-20 font-black text-xs uppercase tracking-[0.3em] items-center"
         >
-          <div className="flex items-center gap-3"><Brain className="w-5 h-5 text-[#FACC15] fill-current" /> NODE: CAREER INTELLIGENCE AGENT v4.0</div>
-          <div className="flex items-center gap-3"><Globe className="w-5 h-5 text-[#2563EB]" /> GLOBAL SYNC: 2026 MARKET INTELLIGENCE ARCHIVES LOADED</div>
-          <div className="flex items-center gap-3"><TrendingUp className="w-5 h-5 text-emerald-600" /> SALARY TRENDS: +15% INCREASE IN AI/WEB3 ROLES INDIA</div>
+          <div className="flex items-center gap-3"><Brain className="w-5 h-5 text-[#FACC15] fill-current" /> NODE: DREAMSYNC STRATEGIST v2.0</div>
+          <div className="flex items-center gap-3"><Globe className="w-5 h-5 text-[#2563EB]" /> ACTIVE CAREER SYNC: 2026 ARCHIVES LOADED</div>
+          <div className="flex items-center gap-3"><TrendingUp className="w-5 h-5 text-emerald-600" /> SALARY TRENDS: +15% INCREASE IN TECH ROLES</div>
           
           {/* Duplicates for loop */}
-          <div className="flex items-center gap-3"><Brain className="w-5 h-5 text-[#FACC15] fill-current" /> NODE: CAREER INTELLIGENCE AGENT v4.0</div>
-          <div className="flex items-center gap-3"><Globe className="w-5 h-5 text-[#2563EB]" /> GLOBAL SYNC: 2026 MARKET INTELLIGENCE ARCHIVES LOADED</div>
+          <div className="flex items-center gap-3"><Brain className="w-5 h-5 text-[#FACC15] fill-current" /> NODE: DREAMSYNC STRATEGIST v2.0</div>
+          <div className="flex items-center gap-3"><Globe className="w-5 h-5 text-[#2563EB]" /> ACTIVE CAREER SYNC: 2026 ARCHIVES LOADED</div>
         </motion.div>
       </div>
 
@@ -300,8 +300,8 @@ export default function CareerAgent() {
                </div>
                <span className="text-xs font-black uppercase tracking-[0.4em] text-black/40">Market Intelligence Protocol</span>
             </div>
-            <h1 className="text-6xl md:text-[100px] font-black tracking-tighter leading-none italic">
-               Career <br /> <span className="text-[#2563EB] drop-shadow-[5px_5px_0px_rgba(0,0,0,1)]">Agent_</span>
+            <h1 className="text-6xl md:text-[100px] font-black tracking-tighter leading-none italic uppercase">
+               Strategist <br /> <span className="text-[#2563EB] drop-shadow-[5px_5px_0px_rgba(0,0,0,1)]">v2.0_</span>
             </h1>
           </div>
           <div className="flex flex-wrap gap-3 justify-end max-w-md">
@@ -318,10 +318,10 @@ export default function CareerAgent() {
                 <div className="w-16 h-16 bg-[#A855F7] border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center">
                    <Sparkles className="w-8 h-8 text-white" />
                 </div>
-                <div className="space-y-4">
-                   <h2 className="text-4xl font-black uppercase tracking-tighter">Ask me anything about your career!</h2>
-                   <p className="text-gray-400 font-bold uppercase tracking-widest text-xs">Salaries, companies, skills, roadmaps — all India-focussed.</p>
-                </div>
+                 <div className="space-y-4">
+                    <h2 className="text-5xl font-black uppercase tracking-tighter italic">Hi! I am your DreamSync AI Guide.</h2>
+                    <p className="text-gray-400 font-bold uppercase tracking-widest text-xs">How can I help you today? I can help you find tools, fix issues, or explore career paths.</p>
+                 </div>
              </div>
            ) : (
              <div className="space-y-12 min-h-[400px]">
