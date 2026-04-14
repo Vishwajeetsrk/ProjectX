@@ -1,4 +1,4 @@
-# 🌙 DreamSync— Sovereign Career Intelligence Platform
+# 🌙 DreamSync — Advanced Career Intelligence Platform
 
 > **AI-powered career engineering for Indian students. Find your path, build your resume, and grow your career with 2026 Market Intelligence.**
 
@@ -6,7 +6,7 @@
 
 ---
 
-## 🏗️ The Sovereign Design System
+## 🏗️ The Professional Design System
 DreamSync is built on a **High-Contrast Neo-Brutalist** architecture. It prioritizes information density, bold structural elements, and a "Fintech-Modern" aesthetic designed to empower the modern professional.
 
 ---

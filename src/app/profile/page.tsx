@@ -128,7 +128,7 @@ function ProfileContent() {
         try {
           setAvatarUrl(base64data);
           await setDoc(doc(db, 'users', user.uid), { avatar_url: base64data }, { merge: true });
-          setMessage({ type: 'success', text: 'IDENTITY SYNCED VIA SOVEREIGN BYPASS.' });
+          setMessage({ type: 'success', text: 'IDENTITY SYNCED VIA DIRECT UPLOAD.' });
         } catch (dbErr: any) {
           setMessage({ type: 'error', text: 'SYNC FAILED. FILE SIZE EXCEEDS BUFFER.' });
         } finally {
@@ -201,7 +201,7 @@ function ProfileContent() {
               <div className="p-2 bg-black text-white shadow-[3px_3px_0px_0px_rgba(37,99,235,1)]">
                 <Fingerprint className="w-8 h-8" />
               </div>
-              <span className="text-xs font-black uppercase tracking-[0.4em] text-black/40">Identity Node Protocol</span>
+              <span className="text-xs font-black uppercase tracking-[0.4em] text-black/40">User Profile Data</span>
             </div>
             <h1 className="text-6xl md:text-[100px] font-black tracking-tighter leading-none text-black uppercase">
               User <br /> <span className="text-[#2563EB] drop-shadow-[5px_5px_0px_rgba(0,0,0,1)] italic">Profile</span>
@@ -315,7 +315,7 @@ function ProfileContent() {
                     <ShieldCheck className="w-12 h-12 shrink-0" strokeWidth={3} />
                     <div className="space-y-4">
                        <h4 className="text-sm font-black uppercase tracking-widest">Identity Infrastructure Notice</h4>
-                       <p className="text-lg font-bold leading-tight">Your profile data is protected via the DreamSync Sovereign Protocol. Identity updates are synchronized across our neural nodes in milliseconds.</p>
+                       <p className="text-lg font-bold leading-tight">Your profile data is protected via the DreamSync Security Protocol. Identity updates are synchronized across our redundant systems in milliseconds.</p>
                     </div>
                   </div>
                 </div>

@@ -28,7 +28,7 @@ export default function UpdatePasswordPage() {
 
     try {
       const user = auth.currentUser;
-      if (!user) throw new Error('No active sovereign session found. Please re-authenticate.');
+      if (!user) throw new Error('No active session found. Please re-authenticate.');
       
       await updatePassword(user, password);
       setSuccess(true);

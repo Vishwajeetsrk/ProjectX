@@ -16,7 +16,7 @@ export default function About() {
           className="flex whitespace-nowrap gap-20 font-black text-xs uppercase tracking-[0.3em] items-center"
         >
           <div className="flex items-center gap-3"><TrendingUp className="w-5 h-5 text-[#2563EB]" /> CORE MISSION: ACCESSIBILITY THROUGH AI</div>
-          <div className="flex items-center gap-3"><Briefcase className="w-5 h-5 text-[#FACC15]" /> SOVEREIGN CAREER ENGINEERING</div>
+          <div className="flex items-center gap-3"><Briefcase className="w-5 h-5 text-[#FACC15]" /> ADVANCED CAREER ENGINEERING</div>
           <div className="flex items-center gap-3"><FileText className="w-5 h-5 text-emerald-400" /> 100% FREE FOR STUDENT NODES</div>
           <div className="flex items-center gap-3"><HeartHandshake className="w-5 h-5 text-rose-400" /> COMMUNITY-DRIVEN GROWTH</div>
           
@@ -90,7 +90,7 @@ export default function About() {
           <div className="neo-box p-20 bg-white text-center space-y-12 relative overflow-hidden">
              <div className="absolute top-0 left-0 w-full h-2 bg-[#2563EB]" />
              <h2 className="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-tight">Ready to sync your dreams?</h2>
-             <p className="text-xl text-gray-400 font-bold max-w-2xl mx-auto uppercase">Initialize your professional trajectory with our sovereign AI toolkit today.</p>
+             <p className="text-xl text-gray-400 font-bold max-w-2xl mx-auto uppercase">Initialize your professional trajectory with our intelligent career toolkit today.</p>
              <Link href="/dashboard" className="neo-btn-primary inline-flex px-16 py-6 text-xl items-center gap-4">
                Join the Platform Today <ArrowRight className="w-6 h-6" />
              </Link>

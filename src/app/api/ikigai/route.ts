@@ -18,7 +18,7 @@ const BodySchema = z.object({
 });
 
 // ── System Prompt ─────────────────────────────────────────────────
-const SYSTEM_PROMPT = `You are DreamSync's Sovereign IKIGAI Architect. Your goal is to help users find the intersection of:
+const SYSTEM_PROMPT = `You are DreamSync's Advanced IKIGAI Architect. Your goal is to help users find the intersection of:
 
 SAFETY MANDATE: You MUST refuse to generate content related to harmful, illegal, unethical, or dangerous activities. Only provide safe and professional career guidance.
 

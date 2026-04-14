@@ -56,7 +56,7 @@ export default function Dashboard() {
               <div className="p-3 bg-black text-white shadow-[4px_4px_0px_0px_rgba(37,99,235,1)]">
                 <LayoutDashboard className="w-8 h-8" />
               </div>
-              <span className="text-sm font-black uppercase tracking-[0.4em] text-black/40">Command Center v4.0</span>
+              <span className="text-sm font-black uppercase tracking-[0.4em] text-black/40">Command Center</span>
             </motion.div>
             <motion.h1 
               initial={{ opacity: 0, x: -20 }}
@@ -67,14 +67,7 @@ export default function Dashboard() {
             </motion.h1>
           </div>
           
-          <motion.div 
-            whileHover={{ scale: 1.05, shadow: "6px 6px 0px 0px rgba(0,0,0,1)" }}
-            whileTap={{ scale: 0.95 }}
-            className="neo-box bg-[#FFFFFF] px-8 py-4 flex items-center gap-4 cursor-pointer group"
-          >
-             <div className="w-3 h-3 bg-green-500 animate-pulse border-2 border-black group-hover:bg-blue-500 transition-colors" />
-             <span className="text-xs font-black uppercase tracking-widest">Global Protocol: Operational</span>
-          </motion.div>
+          <div />
         </div>
 
         {/* Intelligence Matrix Grid */}

@@ -180,7 +180,7 @@ export default function Signup() {
 
         <div className="mt-12 flex justify-center items-center gap-4 opacity-30 grayscale">
            <ShieldCheck className="w-5 h-5" />
-           <span className="text-[10px] font-black tracking-[0.6em]">SOVEREIGN SECURITY LAYER 4.0</span>
+           <span className="text-[10px] font-black tracking-[0.6em] text-black/40 uppercase">Secure Identity Layer</span>
            <Globe className="w-5 h-5" />
         </div>
       </motion.div>
