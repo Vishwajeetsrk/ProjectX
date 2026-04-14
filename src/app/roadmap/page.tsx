@@ -83,10 +83,10 @@ export default function Roadmap() {
                  <div className="p-2 bg-black text-white shadow-[3px_3px_0px_0px_rgba(37,99,235,1)]">
                     <Map className="w-8 h-8" />
                  </div>
-                 <span className="text-xs font-black uppercase tracking-[0.4em] text-black/40">Path (Goals)</span>
+                 <span className="text-xs font-black uppercase tracking-[0.4em] text-black/40">Career Roadmap</span>
               </div>
               <h1 className="text-6xl md:text-[100px] font-black tracking-tighter leading-none text-black">
-                  Path
+                  Career Roadmap
               </h1>
            </div>
            
@@ -236,7 +236,7 @@ export default function Roadmap() {
                         {step.studyMaterials && step.studyMaterials.length > 0 && (
                           <div className="space-y-6">
                              <h4 className="text-xs font-black uppercase tracking-[0.4em] text-black/30 flex items-center gap-4">
-                               <Book className="w-5 h-5 text-black" /> LIBRARIES
+                               <Book className="w-5 h-5 text-black" /> Free Course
                              </h4>
                              <div className="space-y-4">
                                {step.studyMaterials.map((link: any, idx: number) => (
@@ -255,7 +255,7 @@ export default function Roadmap() {
                         {step.videoLectures && step.videoLectures.length > 0 && (
                           <div className="space-y-6">
                              <h4 className="text-xs font-black uppercase tracking-[0.4em] text-red-600 flex items-center gap-4">
-                               <Video className="w-5 h-5" /> BROADCASTS
+                               <Video className="w-5 h-5" /> Video
                              </h4>
                              <div className="space-y-4">
                                {step.videoLectures.map((link: any, idx: number) => (
@@ -264,6 +264,44 @@ export default function Roadmap() {
                                      <h5 className="text-sm font-black uppercase italic text-red-600">{link.label}</h5>
                                      <ExternalLink className="w-4 h-4 text-red-600" />
                                    </div>
+                                 </a>
+                               ))}
+                             </div>
+                          </div>
+                        )}
+
+                        {step.preparationTools && step.preparationTools.length > 0 && (
+                          <div className="space-y-6">
+                             <h4 className="text-xs font-black uppercase tracking-[0.4em] text-[#2563EB] flex items-center gap-4">
+                               <Wrench className="w-5 h-5" /> Preparation Tools link
+                             </h4>
+                             <div className="space-y-4">
+                               {step.preparationTools.map((link: any, idx: number) => (
+                                 <a key={idx} href={link.url} target="_blank" rel="noopener noreferrer" className="block p-6 bg-white border-4 border-black hover:bg-blue-50 transition-all shadow-[4px_4px_0px_0px_rgba(37,99,235,0.2)] hover:shadow-none group">
+                                   <div className="flex justify-between items-center mb-2">
+                                     <h5 className="text-sm font-black uppercase italic text-[#2563EB]">{link.label}</h5>
+                                     <ExternalLink className="w-4 h-4 text-[#2563EB]" />
+                                   </div>
+                                   {link.summary && <p className="text-[10px] font-bold text-black/40 leading-relaxed uppercase mt-2">{link.summary}</p>}
+                                 </a>
+                               ))}
+                             </div>
+                          </div>
+                        )}
+
+                        {step.aiTools && step.aiTools.length > 0 && (
+                          <div className="space-y-6">
+                             <h4 className="text-xs font-black uppercase tracking-[0.4em] text-purple-600 flex items-center gap-4">
+                               <Zap className="w-5 h-5" /> AI Tools
+                             </h4>
+                             <div className="space-y-4">
+                               {step.aiTools.map((link: any, idx: number) => (
+                                 <a key={idx} href={link.url} target="_blank" rel="noopener noreferrer" className="block p-6 bg-white border-4 border-black hover:bg-purple-50 transition-all shadow-[4px_4px_0px_0px_rgba(168,85,247,0.2)] hover:shadow-none group">
+                                   <div className="flex justify-between items-center mb-2">
+                                     <h5 className="text-sm font-black uppercase italic text-purple-600">{link.label}</h5>
+                                     <ExternalLink className="w-4 h-4 text-purple-600" />
+                                   </div>
+                                   {link.summary && <p className="text-[10px] font-bold text-black/40 leading-relaxed uppercase mt-2">{link.summary}</p>}
                                  </a>
                                ))}
                              </div>

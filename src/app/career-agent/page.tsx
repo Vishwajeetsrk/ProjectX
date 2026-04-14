@@ -284,7 +284,8 @@ export default function CareerAgent() {
                <span className="text-xs font-black uppercase tracking-[0.4em] text-black/40">Active Career Sync</span>
             </div>
             <h1 className="text-6xl md:text-[100px] font-black tracking-tighter leading-none italic uppercase">
-               DreamSync <br /> <span className="text-[#2563EB] drop-shadow-[5px_5px_0px_rgba(0,0,0,1)]">Strategist v2</span>
+               DreamSync <br /> 
+               <span className="text-[#2563EB] drop-shadow-[5px_5px_0px_rgba(0,0,0,1)]">Strategist v2 <span className="text-2xl md:text-5xl text-black/40 block mt-4">(AI Guide For Career)</span></span>
             </h1>
           </div>
           <div className="flex flex-wrap gap-3 justify-end max-w-md">

@@ -41,8 +41,8 @@ RETURN EXACT JSON STRUCTURE:
      "skillsToLearn": ["Skill A", "Skill B"],
      "studyMaterials": [{ "label": "Course/Doc", "url": "https://...", "summary": "Why this resource?" }],
      "videoLectures": [{ "label": "Video Name", "url": "https://...", "summary": "Key learning?" }],
-     "certifications": [{ "label": "Cert Name", "url": "https://...", "summary": "Value?" }],
-     "freeToolsAndProjects": [{ "label": "Tool/Project", "url": "https://...", "summary": "Practical use?" }]
+     "preparationTools": [{ "label": "Cert/Test", "url": "https://...", "summary": "Value?" }],
+     "aiTools": [{ "label": "Tool/Project", "url": "https://...", "summary": "Practical use?" }]
   }]
 }`;
 
