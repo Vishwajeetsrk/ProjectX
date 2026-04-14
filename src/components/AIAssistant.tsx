@@ -92,7 +92,7 @@ export default function AIAssistant() {
                   <Sparkles className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-[15px] tracking-tight text-white uppercase"><span className="text-[#2563EB]">Dream</span> <span className="text-white">Sync</span> Strategist v2</h3>
+                  <h3 className="font-bold text-[15px] tracking-tight text-white uppercase"><span className="text-[#2563EB]">Dream</span><span className="text-white">Sync</span> Strategist v2</h3>
                   <div className="flex items-center gap-1.5">
                     <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                     <span className="text-[11px] uppercase font-semibold text-gray-500 tracking-wider">Active Career Sync</span>
