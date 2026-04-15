@@ -66,7 +66,7 @@ export default function Navbar() {
             <button className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-black hover:text-[#2563EB] transition-colors">
               FEATURES <ChevronDown className="w-3 h-3" />
             </button>
-            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-60 neo-box p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[60]">
+            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-60 neo-box bg-white p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[60]">
                <div className="grid gap-1">
                   {featureLinks.map((item) => (
                     <Link
@@ -112,7 +112,7 @@ export default function Navbar() {
                     <UserIcon className="w-5 h-5" />
                   )}
                 </button>
-                <div className="absolute right-0 mt-4 w-60 neo-box p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[100]">
+                <div className="absolute right-0 mt-4 w-60 neo-box bg-white p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[100]">
                   <div className="flex flex-col gap-4">
                     <div className="border-b-2 border-black/10 pb-4">
                       <p className="font-black text-[10px] text-gray-400 uppercase tracking-widest mb-1">User Profile</p>
@@ -146,7 +146,7 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-x-6 top-32 neo-box z-40 lg:hidden flex flex-col p-8"
+            className="fixed inset-x-6 top-32 neo-box bg-white z-40 lg:hidden flex flex-col p-8"
           >
             <div className="space-y-4">
               {featureLinks.map((link) => (

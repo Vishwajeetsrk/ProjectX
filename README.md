@@ -1,115 +1,108 @@
 # 🌙 DreamSync — Advanced Career Intelligence Platform
 
-> **AI-powered career engineering for Indian students. Find your path, build your resume, and grow your career with 2026 Market Intelligence.**
+> **AI-powered career engineering for students. Find your path, build your resume, and grow your career with 2026 Market Intelligence.**
 
 ### 🌐 [Live Deployment](https://dreamsync-ruddy.vercel.app/) | 🏗️ [Blueprint Repository](https://github.com/Vishwajeetsrk/dreamsync)
 
 ---
 
 ## 🏗️ The Professional Design System
-DreamSync is built on a **High-Contrast Neo-Brutalist** architecture. It prioritizes information density, bold structural elements, and a "Fintech-Modern" aesthetic designed to empower the modern professional.
+DreamSync is built on a **High-Contrast Sovereign Neo-Brutalist** architecture. It prioritizes information density, bold structural elements, and a "Fintech-Modern" aesthetic designed to empower the modern professional.
 
 ---
 
-## ✨ Core Feature Nodes
-The platform consists of **9 specialized AI-powered nodes** designed to synchronize your profile with global job market patterns:
+## ✨ Core Intelligence Nodes
+The platform consists of **specialized AI-powered engines** designed to synchronize your professional trajectory with global market patterns:
 
-1.  **🧠 IKIGAI Finder**: Discover your life purpose and ideal career intersection using the Japanese IKIGAI framework.
-2.  **📄 AI Resume Builder**: Generate FAANG-optimized, ATS-hardened resumes with real-time PDF/DOCX rendering.
-3.  **📊 Smart ATS Analyzer**: Upload your resume and JD to decrypt recruiter patterns and get eligibility scores.
-4.  **🗺️ Career Roadmap**: 2026-aware technical and professional progression paths tailored to your target role.
-5.  **💼 LinkedIn Optimizer**: AI-driven headline, about section, and skill optimization to rank higher in search.
-6.  **🖼️ Portfolio Generator**: Instantly transform your professional data into a high-performance web portfolio.
-7.  **🤖 Career Intelligence Agent**: A conversational AI agent synced with real-time salary trends and job portals.
-8.  **📑 Docs & Skills Hub**: Comprehensive guidance on government documents, ID nodes, and legal requirements.
-9.  **🛠️ Skill Architect (V2)**: Systematic technical skill mapping and educational resource aggregation.
+1.  **🧠 IKIGAI Architect**: High-precision career diagnostics intersecting Passion, Skills, Market Demand, and Income.
+2.  **📄 AI Resume Forge**: Generate FAANG-optimized, ATS-hardened resumes with real-time PDF/DOCX rendering.
+3.  **📊 Advanced ATS Analyzer**: Decrypt recruiter patterns and get eligibility scores vs specific Job Descriptions.
+4.  **🗺️ Roadmap Accelerator**: 90-day technical and professional progression paths tailored to the 2026 Indian ecosystem.
+5.  **💼 LinkedIn Pro Optimizer**: AI-driven headline, about section, and keyword tuning to rank in the top 1% of recruiters' searches.
+6.  **🖼️ Portfolio Engine**: Instantly transform professional data into high-performance, responsive web portfolios.
+7.  **🤖 Career Strategist v2**: Expert AI agent synced with real-time salary trends and primary job portals.
+8.  **📑 Global Docs Hub**: Unified guidance on essential identity nodes (Aadhar, PAN, Passport) and legal professional requirements.
 
 ---
 
-## 🛠 Technical Architecture
+## 🛠 Technical Architecture (v2026)
 
-### Core Stack
-- **Framework**: [Next.js 16](https://nextjs.org/) (App Router, Turbopack)
-- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) (Neo-Brutalist Design System)
-- **Animation**: [Framer Motion](https://www.framer.com/motion/) (Micro-interactions)
-- **Database**: [Supabase](https://supabase.com/) (PostgreSQL + RLS)
-- **Authentication**: [Firebase](https://firebase.google.com/) (Client Auth) + [Supabase SSR](https://supabase.com/docs/guides/auth/server-side/nextjs)
-- **Cache/Rate Limits**: [Upstash Redis](https://upstash.com/)
+### Core Performance Stack
+- **Framework**: [Next.js 16.2+](https://nextjs.org/) (App Router, Turbopack, Server Components)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) (Custom Neo-Brutalist Utility System)
+- **Animation**: [Framer Motion 12+](https://www.framer.com/motion/) (Micro-interactions & Physics)
+- **Database**: [Firebase Cloud Firestore](https://firebase.google.com/) (Real-time Profile Synchronization)
+- **Authentication**: **Hybrid Security Protocol** (Firebase Client Auth + NextAuth.js for OIDC Social login)
+- **Storage**: [Firebase Storage](https://firebase.google.com/) (Identity Assets & PDF Blobs)
+- **Edge Cache**: [Upstash Redis](https://upstash.com/) (AI Response Caching & Rate Limiting)
 
 ### AI Intelligence Protocol
-- **OpenAI GPT-4o**: Primary reasoning and documentation engine.
-- **DeepSeek/Llama 3**: Fast inference for conversational agents.
-- **Google Gemini 2.0**: Multimodal analysis for image-based resume parsing.
-- **OpenRouter**: Unified API gateway for protocol redundancy.
+- **Groq & Llama 3**: Primary ultra-fast inference for conversational agents.
+- **OpenRouter (GPT-4o)**: Complex reasoning and resume architecture engine.
+- **Google Gemini 1.5 Flash**: Multimodal analysis for vision-based resume parsing.
+- **Strategic Caching**: All AI responses are cached at the edge via Redis to ensure sub-100ms response times for repeat queries.
 
 ---
 
-## 🏁 Getting Started (Local Development)
+## 🏁 Development Protocol
 
 ### Prerequisites
-- Node.js >= 18.x
-- npm >= 9.x
-- Active Supabase, Firebase, and Upstash projects.
+- Node.js >= 20.x
+- npm >= 10.x
+- Active Firebase, Upstash, and OpenRouter API credentials.
 
-### Installation Protocol
+### Installation & Initialization
 ```bash
-# 1. Clone the repository
-git clone https://github.com/Vishwajeetsrk/dreamsync.git
-cd dreamsync
+# 1. Clone the identity node
+git clone https://github.com/Vishwajeetsrk/dreamssync_test.git
+cd dreamssync_test
 
 # 2. Synchronize Dependencies
-npm install
+npm install --legacy-peer-deps
 
 # 3. Configure Environment Nodes
-cp .env.local.example .env.local
-# [Populate with your API keys]
+# Create .env.local and populate with:
+# NEXT_PUBLIC_FIREBASE_*, GOOGLE_CLIENT_ID, GITHUB_CLIENT_ID, 
+# GROQ_API_KEY, UPSTASH_REDIS_REST_URL, etc.
 
-# 4. Initialize Development Server
+# 4. Initialize Development Accelerator
 npm run dev
 ```
 
 ---
 
-## 🚀 Deployment & Version Control
+## 🚀 Version Control & Synchronization
 
-### Commands to Update GitHub
-To ensure your local changes are synchronized with the primary and mirror repositories, execute the following protocol:
+To synchronize local modifications with the primary and mirror repositories:
 
 ```bash
 # 1. Stage all modifications
 git add .
 
 # 2. Commit with professional context
-git commit -m "feat: synchronize core nodes with neo-brutalist v2 identity"
+git commit -m "feat: stabilize core auth nodes and optimize AI edge caching"
 
-# 3. Push to Primary Repository
+# 3. Push to High-Level Remotes
 git push origin main
-
-# 4. Push to Mirror Repository (if applicable)
-git push mirror main
+git push secondary main
 ```
 
-> [!IMPORTANT]
-> **Vercel Auto-Deployment**: Every `push` to the `main` branch triggers an automated build and deployment to the production edge.
+---
+
+## 📄 Integrity & Security
+- **Identity Protection**: Hybrid Auth ensures secure OIDC handshakes for Google, GitHub, and LinkedIn.
+- **Protocol Safety**: `aiGuard` filtering prevents generation of unprofessional or illegal career content.
+- **Rate Limit**: Enforced via Upstash Redis (Sliding Window Algorithm) to prevent API exhaustion.
 
 ---
 
-## 📄 Platform Protocol
-- **Privacy Core**: Integrated RLS (Row Level Security) ensures user data is only accessible to the authorized node.
-- **Bot Protection**: Cloudflare Turnstile integration prevents automated protocol abuse.
-- **Rate Limit**: Enforced via Upstash Redis (10 generations/day for free nodes).
+## 💖 Community Stewardship
+DreamSync is a 100% community-supported platform. We remove financial barriers for students through donor contributions that sustain our high-performance AI infrastructure.
 
----
-
-## 💖 Community Support (Donors)
-DreamSync is 100% free and open-source for students. Our AI infrastructure and server costs are sustained by the community. 
-
-**How to contribute:**
+**Support the Protocol:**
 - **UPI**: `vishwajeetsrk-1@okhdfcbank`
-- **Platform**: Visit our [Donate Page](https://dreamssync.vercel.app/donate) for detailed tiers and QR codes.
-
-*Every contribution helps us maintain the AI API credits and keep the platform accessible to everyone.*
+- **Official Portal**: [Donate Hub](https://dreamsync-ruddy.vercel.app/donate)
 
 ---
 
-© 2026 DREAMSYNC AI. IDENTITY_SYNCHRONIZED.
+© 2026 DREAMSYNC AI. IDENTITY_SYNCHRONIZED. REGISTRY_MODERNIZED.

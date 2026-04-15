@@ -179,41 +179,72 @@ async function callGemini(
   return { content, provider: 'gemini' };
 }
 
-// ─── MAIN: Fallback Chain ─────────────────────────────────────────
+// ─── MAIN: Fallback Chain with Edge Caching ───────────────────────
 export async function callAI(
   messages: AIMessage[],
   opts: AIOptions = {}
 ): Promise<ProviderResult> {
+  // 1. Generate Cache Key (based on messages and opts)
+  const cacheKey = `ds:ai:cache:${crypto
+    .createHash('md5')
+    .update(JSON.stringify({ messages, opts }))
+    .digest('hex')}`;
+
+  // 2. Try Cache First (if redis is available)
+  try {
+    const cached = await redis.get<ProviderResult>(cacheKey);
+    if (cached) {
+      // Return cached result (verified non-null by SDK type if configured)
+      return { ...cached, provider: `${cached.provider} (cached)` };
+    }
+  } catch (err) {
+    console.warn('[AI] Cache lookup error:', err);
+  }
+
   const errors: string[] = [];
 
-  // 1. Groq — fastest, most generous free tier
+  // Logic for providers below...
+  const executeCall = async (): Promise<ProviderResult> => {
+    // 1. Groq — fastest, most generous free tier
+    try {
+      return await callGroq(messages, opts);
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : String(e);
+      errors.push(`Groq: ${msg}`);
+      console.warn('[AI] Groq failed →', msg.slice(0, 120));
+    }
+
+    // 2. OpenRouter
+    try {
+      return await callOpenRouter(messages, opts);
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : String(e);
+      errors.push(`OpenRouter: ${msg}`);
+      console.warn('[AI] OpenRouter failed →', msg.slice(0, 120));
+    }
+
+    // 3. Gemini — last resort
+    try {
+      return await callGemini(messages, opts);
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : String(e);
+      errors.push(`Gemini: ${msg}`);
+      console.warn('[AI] Gemini failed →', msg.slice(0, 120));
+    }
+
+    throw new Error(`All AI providers failed:\n${errors.join('\n')}`);
+  };
+
+  const result = await executeCall();
+
+  // 3. Save to Cache (Async, don't block response) - TTL: 24h
   try {
-    return await callGroq(messages, opts);
-  } catch (e: unknown) {
-    const msg = e instanceof Error ? e.message : String(e);
-    errors.push(`Groq: ${msg}`);
-    console.warn('[AI] Groq failed →', msg.slice(0, 120));
+    redis.set(cacheKey, result, { ex: 60 * 60 * 24 }).catch(e => console.error('[AI] Cache write error:', e));
+  } catch (err) {
+    /* ignore cache save errors */
   }
 
-  // 2. OpenRouter
-  try {
-    return await callOpenRouter(messages, opts);
-  } catch (e: unknown) {
-    const msg = e instanceof Error ? e.message : String(e);
-    errors.push(`OpenRouter: ${msg}`);
-    console.warn('[AI] OpenRouter failed →', msg.slice(0, 120));
-  }
-
-  // 3. Gemini — last resort
-  try {
-    return await callGemini(messages, opts);
-  } catch (e: unknown) {
-    const msg = e instanceof Error ? e.message : String(e);
-    errors.push(`Gemini: ${msg}`);
-    console.warn('[AI] Gemini failed →', msg.slice(0, 120));
-  }
-
-  throw new Error(`All AI providers failed:\n${errors.join('\n')}`);
+  return result;
 }
 
 /**
