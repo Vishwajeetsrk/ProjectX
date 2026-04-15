@@ -61,10 +61,10 @@ export default function Footer() {
         <div className="space-y-6">
           <h4 className="text-xs font-black uppercase tracking-widest text-black">Connect</h4>
           <ul className="space-y-3 text-[10px] font-bold text-gray-500 uppercase">
-            <li><a href="#" className="hover:text-black">LinkedIn</a></li>
+            <li><a href="https://www.linkedin.com/company/dreamsync-community/" target="_blank" rel="noopener noreferrer" className="hover:text-black">LinkedIn</a></li>
             <li><a href="#" className="hover:text-black">Instagram</a></li>
             <li><a href="#" className="hover:text-black">Twitter / X</a></li>
-            <li><a href="mailto:support@dreamsync.ai" className="hover:text-black">Email Us</a></li>
+            <li><a href="mailto:dreamsyncbangalore@gmail.com" className="hover:text-black">Email Us</a></li>
           </ul>
         </div>
       </div>

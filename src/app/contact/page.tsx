@@ -146,7 +146,7 @@ export default function Contact() {
           <div className="bg-white border-4 border-black p-8 neo-box transform md:-rotate-1">
             <h2 className="text-2xl font-black mb-6 border-b-2 border-black pb-2 flex items-center gap-2"><Globe /> Social Media</h2>
             <div className="flex flex-col gap-4 font-bold">
-              <a href="https://www.linkedin.com/in/dreamsync-a-care-experienced-community-41601a2a0/" target="_blank" rel="noopener noreferrer" className="p-3 border-2 border-black hover:bg-[#0A66C2] hover:text-white transition-colors text-center">LinkedIn</a>
+              <a href="https://www.linkedin.com/company/dreamsync-community/" target="_blank" rel="noopener noreferrer" className="p-3 border-2 border-black hover:bg-[#0A66C2] hover:text-white transition-colors text-center">LinkedIn</a>
               <a href="https://instagram.com/dream_sync_hub" target="_blank" rel="noopener noreferrer" className="p-3 border-2 border-black hover:bg-[#E1306C] hover:text-white transition-colors text-center">Instagram</a>
               <a href="https://www.facebook.com/groups/605404708473694/" target="_blank" rel="noopener noreferrer" className="p-3 border-2 border-black hover:bg-[#1877F2] hover:text-white transition-colors text-center">Facebook Group</a>
               <a href="https://twitter.com/ADreamsync" target="_blank" rel="noopener noreferrer" className="p-3 border-2 border-black hover:bg-black hover:text-white transition-colors text-center">X (Twitter)</a>
