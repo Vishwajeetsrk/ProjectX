@@ -222,7 +222,7 @@ export default function CareerPathCard({ path }: { path: CareerPath }) {
             key={s.id}
             onClick={() => setActiveSection(s.id)}
             className={`flex items-center gap-1.5 px-4 py-2.5 text-xs font-black uppercase tracking-wider whitespace-nowrap transition-colors border-r-2 border-black ${
-              activeSection === s.id ? 'bg-black text-white' : 'bg-white hover:bg-gray-100'
+              activeSection === s.id ? 'bg-[#2563EB] text-white' : 'bg-white hover:bg-gray-100'
             }`}
           >
             {s.icon}{s.label}

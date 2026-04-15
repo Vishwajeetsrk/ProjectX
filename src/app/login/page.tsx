@@ -5,7 +5,7 @@ import { auth, db } from '@/lib/firebase';
 import { signInWithEmailAndPassword, GoogleAuthProvider, GithubAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Mail, Lock, LogIn, Binary, ArrowRight, ShieldCheck, AlertCircle, Sparkles, Zap, Globe, Fingerprint } from 'lucide-react';
+import { Mail, Lock, LogIn, Binary, ArrowRight, ShieldCheck, AlertCircle, Sparkles, Zap, Globe, Fingerprint, Eye, EyeOff } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import Image from 'next/image';
@@ -15,6 +15,7 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -25,7 +26,17 @@ export default function Login() {
       await signInWithEmailAndPassword(auth, email, password);
       router.push('/dashboard');
     } catch (err: any) {
-      setError(err.message);
+      let friendlyMessage = err.message;
+      if (err.code === 'auth/invalid-credential' || err.code === 'auth/wrong-password') {
+        friendlyMessage = "Incorrect password. Please try again or reset it.";
+      } else if (err.code === 'auth/user-not-found') {
+        friendlyMessage = "No account found with this email. Please sign up.";
+      } else if (err.code === 'auth/invalid-email') {
+        friendlyMessage = "Please enter a valid email address.";
+      } else if (err.code === 'auth/too-many-requests') {
+        friendlyMessage = "Too many failed attempts. Please try again later.";
+      }
+      setError(friendlyMessage);
     } finally {
       setLoading(false);
     }
@@ -56,7 +67,11 @@ export default function Login() {
       router.push('/dashboard');
     } catch (err: any) {
       console.error(`${provider} login error:`, err);
-      setError(err.message);
+      let friendlyMessage = err.message;
+      if (err.code === 'auth/account-exists-with-different-credential') {
+        friendlyMessage = "An account already exists with this email using a different provider.";
+      }
+      setError(friendlyMessage);
     } finally {
       setLoading(false);
     }
@@ -86,8 +101,15 @@ export default function Login() {
           </div>
 
           {error && (
-            <div className="p-5 bg-red-100 border-4 border-black text-red-600 text-xs font-black flex items-center gap-4 animate-shake shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-              <AlertCircle className="w-6 h-6 flex-shrink-0" /> {error}
+            <div className="p-5 bg-red-100 border-4 border-black text-red-600 text-xs font-black flex flex-col gap-4 animate-shake shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <div className="flex items-center gap-4">
+                <AlertCircle className="w-6 h-6 flex-shrink-0" /> {error}
+              </div>
+              {error.includes("sign up") && (
+                <Link href="/signup" className="ml-10 bg-black text-white px-4 py-2 w-max hover:bg-red-600 transition-colors">
+                  CREATE ACCOUNT →
+                </Link>
+              )}
             </div>
           )}
 
@@ -113,13 +135,20 @@ export default function Login() {
               </div>
               <div className="relative group">
                 <input 
-                  type="password" 
+                  type={showPassword ? "text" : "password"} 
                   required 
-                  className="neo-input"
+                  className="neo-input pr-12"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black transition-colors"
+                >
+                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                </button>
               </div>
             </div>
 

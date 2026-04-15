@@ -55,7 +55,7 @@ export const graphicDesignPath: CareerPath = {
   overview:
     'One of India\'s fastest-growing creative fields. From app interfaces to brand campaigns — designers are in demand across every industry. No engineering degree required.',
   tags: ['Creative', 'High Demand', 'Remote-Friendly', 'Freelance Possible'],
-  headerColor: 'bg-violet-500',
+  headerColor: 'bg-[#2563EB]',
 
   roleGroups: [
     {

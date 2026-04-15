@@ -5,7 +5,7 @@ import { auth, db } from '@/lib/firebase';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, GithubAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Mail, Lock, User, Database, ArrowRight, ShieldCheck, AlertCircle, Sparkles, Zap, Globe } from 'lucide-react';
+import { Mail, Lock, User, Database, ArrowRight, ShieldCheck, AlertCircle, Sparkles, Zap, Globe, Eye, EyeOff } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import Image from 'next/image';
@@ -14,6 +14,7 @@ export default function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -36,7 +37,15 @@ export default function Signup() {
       
       router.push('/dashboard');
     } catch (err: any) {
-      setError(err.message);
+      let friendlyMessage = err.message;
+      if (err.code === 'auth/email-already-in-use') {
+        friendlyMessage = "You already have an account with this email. Please Login instead.";
+      } else if (err.code === 'auth/weak-password') {
+        friendlyMessage = "Password is too weak. Please use at least 6 characters.";
+      } else if (err.code === 'auth/invalid-email') {
+        friendlyMessage = "Please enter a valid email address.";
+      }
+      setError(friendlyMessage);
     } finally {
       setLoading(false);
     }
@@ -67,7 +76,11 @@ export default function Signup() {
       router.push('/dashboard');
     } catch (err: any) {
       console.error(`${provider} signup error:`, err);
-      setError(err.message);
+      let friendlyMessage = err.message;
+      if (err.code === 'auth/email-already-in-use' || err.code === 'auth/account-exists-with-different-credential') {
+        friendlyMessage = "An account already exists with this email. Try logging in instead.";
+      }
+      setError(friendlyMessage);
     } finally {
       setLoading(false);
     }
@@ -97,8 +110,15 @@ export default function Signup() {
           </div>
 
           {error && (
-            <div className="p-5 bg-red-100 border-4 border-black text-red-600 text-xs font-black flex items-center gap-4 animate-shake shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-              <AlertCircle className="w-6 h-6 flex-shrink-0" /> {error}
+            <div className="p-5 bg-red-100 border-4 border-black text-red-600 text-xs font-black flex flex-col gap-4 animate-shake shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <div className="flex items-center gap-4">
+                <AlertCircle className="w-6 h-6 flex-shrink-0" /> {error}
+              </div>
+              {error.includes("Login instead") && (
+                <Link href="/login" className="ml-10 bg-black text-white px-4 py-2 w-max hover:bg-red-600 transition-colors">
+                  GO TO LOGIN →
+                </Link>
+              )}
             </div>
           )}
 
@@ -129,14 +149,23 @@ export default function Signup() {
 
             <div className="space-y-3">
               <label className="text-xs font-black tracking-widest ml-1">PASSWORD</label>
-              <input 
-                type="password" 
-                required 
-                className="neo-input"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-              />
+              <div className="relative group">
+                <input 
+                  type={showPassword ? "text" : "password"} 
+                  required 
+                  className="neo-input pr-12"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black transition-colors"
+                >
+                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                </button>
+              </div>
             </div>
 
             <button 

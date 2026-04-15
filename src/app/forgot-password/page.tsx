@@ -22,7 +22,15 @@ export default function ForgotPassword() {
       setSuccess(true);
     } catch (err: any) {
       console.error('Password reset error:', err);
-      setError(err.message || 'Failed to send reset email. Please try again.');
+      let friendlyMessage = "Failed to send reset email. Please verify if the email is correct.";
+      if (err.code === 'auth/user-not-found') {
+        friendlyMessage = "No account found with this email address.";
+      } else if (err.code === 'auth/invalid-email') {
+        friendlyMessage = "Please enter a valid email address.";
+      } else if (err.code === 'auth/too-many-requests') {
+        friendlyMessage = "Too many requests. Please try again in 5 minutes.";
+      }
+      setError(friendlyMessage);
     } finally {
       setLoading(false);
     }
@@ -58,8 +66,8 @@ export default function ForgotPassword() {
     <div className="flex items-center justify-center min-h-[70vh]">
       <div className="w-full max-w-md bg-white border-4 border-black p-8 neo-box">
         <div className="flex flex-col items-center mb-8">
-          <div className="w-16 h-16 bg-yellow-400 flex items-center justify-center border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-4">
-            <Mail className="w-8 h-8 text-black" />
+          <div className="w-16 h-16 bg-[#2563EB] flex items-center justify-center border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-4">
+            <Mail className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-3xl font-black text-center uppercase tracking-tight">Reset Password</h1>
           <p className="text-muted-foreground font-bold text-center text-sm uppercase tracking-tight mt-2">Enter your email to reset your password</p>

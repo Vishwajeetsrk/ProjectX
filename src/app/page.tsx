@@ -108,8 +108,13 @@ export default function Home() {
             {features.map((tool, i) => (
               <Link href={tool.href} key={i}>
                 <motion.div 
-                  className="bg-white border-4 border-black p-8 h-full flex flex-col items-start gap-6 group hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all relative overflow-hidden"
+                  className="bg-white border-4 border-black p-8 h-full flex flex-col items-start gap-6 group hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all relative overflow-hidden cursor-pointer"
                   whileHover={{ y: -4 }}
+                  whileTap={{ 
+                    scale: 0.98,
+                    backgroundColor: ["#ffffff", "#f87171", "#fbbf24", "#34d399", "#60a5fa", "#818cf8", "#c084fc", "#ffffff"],
+                    transition: { duration: 0.8, times: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 1], repeat: 0 }
+                  }}
                 >
                    <div className="p-3 border-2 border-black bg-white group-hover:bg-[#FACC15] transition-colors">
                       <tool.icon className="w-6 h-6" strokeWidth={3} />
