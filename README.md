@@ -90,7 +90,7 @@ git push secondary main
 ---
 
 ## 📄 Integrity & Security
-- **Identity Protection**: Hybrid Auth ensures secure OIDC handshakes for Google, GitHub, and LinkedIn.
+- **Identity Protection**: Native Firebase Secure Auth ensures sub-millisecond validation for Google and GitHub accounts.
 - **Protocol Safety**: `aiGuard` filtering prevents generation of unprofessional or illegal career content.
 - **Rate Limit**: Enforced via Upstash Redis (Sliding Window Algorithm) to prevent API exhaustion.
 
