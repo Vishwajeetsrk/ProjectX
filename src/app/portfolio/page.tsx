@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   Globe, Plus, Trash2, Download, ChevronRight, ChevronLeft,
   Sparkles, Monitor, Eye, Code2, Check, ArrowRight, Palette,
-  User, Briefcase, BookOpen, FolderKanban, Award
+  User, Briefcase, BookOpen, FolderKanban, Award,
+  Upload, Loader2
 } from 'lucide-react';
 import { validateCareerInput } from '@/lib/aiGuard';
 

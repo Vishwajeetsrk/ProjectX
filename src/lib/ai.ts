@@ -1,8 +1,5 @@
-/**
- * DreamSync AI Provider — Groq (primary) → OpenRouter (fallback) → Gemini (backup)
- * Zero-cost priority: Groq free tier is very generous, then OpenRouter, then Gemini.
- * v2: Added AbortController timeouts per provider.
- */
+import { redis } from './ratelimit';
+import crypto from 'crypto';
 
 export type AIMessage = {
   role: 'system' | 'user' | 'assistant';

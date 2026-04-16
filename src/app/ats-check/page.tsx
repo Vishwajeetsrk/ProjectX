@@ -158,7 +158,7 @@ export default function AdvancedATS() {
                 </div>
                 <div className="flex items-end">
                   <button onClick={analyzeResume} disabled={loading || !file || !jobRole} className="neo-btn-primary w-full py-6 text-xl">
-                    {loading ? <Loader2 className="animate-spin w-8 h-8" /> : 'INITIALIZE_SCAN'}
+                    {loading ? <Loader2 className="animate-spin w-8 h-8" /> : 'Scan'}
                   </button>
                 </div>
               </div>

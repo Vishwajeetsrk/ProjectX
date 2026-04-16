@@ -4,7 +4,8 @@ import React, { useState, useRef } from 'react';
 import { 
   Plus, Trash2, Download, Printer, User, Briefcase, 
   GraduationCap, Palette, Layout, Save, Sparkles, Send, FileText, Award,
-  Fingerprint, Zap, Coffee, ArrowRight, CheckCircle2, AlertCircle, BarChart3, Info, Upload, ShieldCheck
+  Fingerprint, Zap, Coffee, ArrowRight, CheckCircle2, AlertCircle, BarChart3, Info, Upload, ShieldCheck,
+  Search, Loader2
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useReactToPrint } from 'react-to-print';
