@@ -151,14 +151,14 @@ export default function Navbar() {
             </div>
             <div className="space-y-4">
               {featureLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="p-5 border-4 border-black font-black uppercase text-sm text-black hover:bg-[#2563EB] hover:text-white flex items-center justify-between transition-all"
-                >
-                  {link.name} <ArrowRight className="w-5 h-5" />
-                </Link>
+                 <Link
+                   key={link.href}
+                   href={link.href}
+                   onClick={() => setIsMenuOpen(false)}
+                   className="p-3 border-2 md:border-4 border-black font-black uppercase text-xs text-black hover:bg-[#2563EB] hover:text-white flex items-center justify-between transition-all"
+                 >
+                   {link.name} <ArrowRight className="w-4 h-4" />
+                 </Link>
               ))}
               <div className="pt-4 space-y-4">
                 <Link
@@ -171,11 +171,11 @@ export default function Navbar() {
 
                 <div className="pt-8 space-y-4 border-t-4 border-black mt-4">
                     <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Account & Settings</p>
-                    <Link href="/profile" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-3 p-4 border-4 border-black font-black uppercase text-sm text-[#2563EB]">
-                       <Settings className="w-5 h-5" /> Profile Settings
+                    <Link href="/profile" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-3 p-3 border-2 md:border-4 border-black font-black uppercase text-xs text-[#2563EB]">
+                       <Settings className="w-4 h-4" /> Profile Settings
                     </Link>
-                    <button onClick={() => { setIsMenuOpen(false); handleLogout(); }} className="w-full flex items-center gap-3 p-4 border-4 border-black font-black uppercase text-sm text-red-600">
-                       <LogOut className="w-5 h-5" /> Logout
+                    <button onClick={() => { setIsMenuOpen(false); handleLogout(); }} className="w-full flex items-center gap-3 p-3 border-2 md:border-4 border-black font-black uppercase text-xs text-red-600">
+                       <LogOut className="w-4 h-4" /> Logout
                     </button>
                 </div>
               </div>
