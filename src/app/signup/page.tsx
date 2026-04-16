@@ -85,7 +85,18 @@ export default function Signup() {
       router.push('/dashboard');
     } catch (err: any) {
       console.error(`${provider} signup error:`, err);
-      setError(err.message || `Failed to sign up with ${provider}`);
+
+      // Handle common Firebase popup errors gracefully
+      let errorMessage = err.message || `Failed to sign up with ${provider}`;
+      if (err.code === 'auth/popup-closed-by-user') {
+        errorMessage = "Signup window was closed before completion. Please try again.";
+      } else if (err.code === 'auth/cancelled-popup-request') {
+        errorMessage = "Only one signup window can be open at a time.";
+      } else if (err.code === 'auth/popup-blocked') {
+        errorMessage = "The signup popup was blocked by your browser. Please allow popups for this site.";
+      }
+
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }

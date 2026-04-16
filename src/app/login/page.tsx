@@ -76,7 +76,18 @@ export default function Login() {
       router.push('/dashboard');
     } catch (err: any) {
       console.error(`${providerName} login error:`, err);
-      setError(err.message || `Failed to sign in with ${providerName}`);
+      
+      // Handle common Firebase popup errors gracefully
+      let errorMessage = err.message || `Failed to sign in with ${providerName}`;
+      if (err.code === 'auth/popup-closed-by-user') {
+        errorMessage = "Login window was closed before completion. Please try again.";
+      } else if (err.code === 'auth/cancelled-popup-request') {
+        errorMessage = "Only one login window can be open at a time.";
+      } else if (err.code === 'auth/popup-blocked') {
+        errorMessage = "The login popup was blocked by your browser. Please allow popups for this site.";
+      }
+      
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
