@@ -28,6 +28,11 @@
     text-transform: uppercase;
     letter-spacing: -0.02em;
   }
+
+  /* Responsive Typography Base */
+  h1 { font-size: clamp(2.5rem, 8vw, 6rem); }
+  h2 { font-size: clamp(2rem, 6vw, 4rem); }
+  h3 { font-size: clamp(1.5rem, 4vw, 2.5rem); }
 }
 
 @layer utilities {
@@ -55,10 +60,38 @@
     @apply bg-clip-text text-transparent bg-gradient-to-r from-[#2563EB] via-[#FACC15] to-[#E11D48];
   }
 
-  /* PERFORMANCE OVERRIDES */
-  .heavy-section {
-    content-visibility: auto;
-    contain-intrinsic-size: 0 500px;
+  /* MOBILE OPTIMIZATIONS */
+  @media (max-width: 640px) {
+    .neo-box {
+      @apply shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] p-4;
+    }
+    
+    .neo-btn-primary, .neo-btn-secondary {
+      @apply px-4 py-3 text-xs shadow-[3px_3px_0px_0px_rgba(0,0,0,1)];
+    }
+
+    .neo-input {
+      @apply border-2 p-3 text-sm;
+    }
+    
+    .mobile-stack {
+      @apply flex-col gap-4;
+    }
+    
+    .mobile-hide {
+      @apply hidden;
+    }
+    
+    .mobile-padding {
+      @apply px-4 py-8;
+    }
+  }
+
+  /* TABLET OPTIMIZATIONS */
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .neo-box {
+      @apply shadow-[6px_6px_0px_0px_rgba(0,0,0,1)];
+    }
   }
 
   @media (max-width: 768px) {
