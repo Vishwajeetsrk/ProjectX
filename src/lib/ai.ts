@@ -90,41 +90,58 @@ async function callOpenRouter(
   const key = process.env.OPENROUTER_API_KEY;
   if (!key) throw new Error('OPENROUTER_API_KEY not configured');
 
-  const body: Record<string, unknown> = {
-    model: 'openai/gpt-4o-mini',
-    messages,
-    temperature: opts.temperature ?? 0.7,
-    max_tokens: opts.maxTokens ?? 2048,
-  };
+  // Multi-model rotation for OpenRouter resilience
+  const models = [
+    'openai/gpt-4o-mini',
+    'meta-llama/llama-3.1-70b-instruct',
+    'meta-llama/llama-3.3-70b-instruct',
+    'google/gemini-flash-1.5-8b',
+    'meta-llama/llama-3.1-8b-instruct:free'
+  ];
 
-  if (opts.jsonMode) {
-    body.response_format = { type: 'json_object' };
+  let lastError = '';
+  for (const model of models) {
+    try {
+      const body: Record<string, unknown> = {
+        model,
+        messages,
+        temperature: opts.temperature ?? 0.7,
+        max_tokens: opts.maxTokens ?? 2048,
+        ...(opts.jsonMode ? { response_format: { type: 'json_object' } } : {})
+      };
+
+      const res = await fetchWithTimeout(
+        'https://openrouter.ai/api/v1/chat/completions',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${key}`,
+            'HTTP-Referer': 'https://dreamsync-ruddy.vercel.app',
+            'X-Title': 'DreamSync AI',
+          },
+          body: JSON.stringify(body),
+        },
+        opts.timeoutMs ?? 15_000
+      );
+
+      if (!res.ok) {
+        const err = await res.text();
+        throw new Error(`${model} ${res.status}: ${err.slice(0, 100)}`);
+      }
+
+      const data = await res.json();
+      const content = data.choices?.[0]?.message?.content;
+      if (!content) throw new Error(`${model} returned empty content`);
+      return { content, provider: `openrouter:${model}` };
+    } catch (e: any) {
+      lastError = e.message;
+      console.warn(`[AI] OpenRouter ${model} failed →`, lastError);
+      continue; // try next model
+    }
   }
 
-  const res = await fetchWithTimeout(
-    'https://openrouter.ai/api/v1/chat/completions',
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${key}`,
-        'HTTP-Referer': 'https://dreamsync-ruddy.vercel.app',
-        'X-Title': 'DreamSync AI',
-      },
-      body: JSON.stringify(body),
-    },
-    opts.timeoutMs ?? 15_000
-  );
-
-  if (!res.ok) {
-    const err = await res.text();
-    throw new Error(`OpenRouter ${res.status}: ${err.slice(0, 200)}`);
-  }
-
-  const data = await res.json();
-  const content = data.choices?.[0]?.message?.content;
-  if (!content) throw new Error('OpenRouter returned empty content');
-  return { content, provider: 'openrouter' };
+  throw new Error(`OpenRouter exhaustive failure: ${lastError}`);
 }
 
 // ─── GEMINI (Backup — Free 1.5-flash) ────────────────────────────
