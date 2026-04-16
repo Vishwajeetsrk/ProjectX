@@ -147,18 +147,34 @@ function ChatBubble({ msg }: { msg: Message }) {
                   if (si === 0 && section.trim()) return <p key={si}>{section.trim()}</p>;
                   if (!section.trim()) return null;
 
-                  const [title, ...rest] = section.split('\n');
+                  // Clean up the title and the rest
+                  const lines = section.trim().split('\n');
+                  const rawTitle = lines[0].trim();
+                  const cleanedTitle = rawTitle.replace(/\*\*/g, '').replace(/###/g, '');
+                  const bodyLines = lines.slice(1);
+
                   return (
-                    <div key={si} className="space-y-4 pt-4 border-t-4 border-black/5">
-                      <h3 className="text-2xl font-black uppercase tracking-tighter text-[#2563EB] flex items-center gap-3">
-                         <TrendingUp className="w-8 h-8" /> {title.trim()}
+                    <div key={si} className="space-y-4 pt-8 border-t-8 border-black/5 mt-8 first:mt-0 first:border-0 first:pt-0">
+                      <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-[#2563EB] flex items-center gap-4 group">
+                         <div className="p-2 border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group-hover:bg-[#FACC15] transition-colors">
+                           <TrendingUp className="w-6 h-6" />
+                         </div>
+                         {cleanedTitle}
                       </h3>
-                      <div className="text-base font-bold text-gray-700 leading-relaxed uppercase">
-                         {rest.join('\n').split('\n').map((line, li) => {
+                      <div className="text-sm md:text-base font-bold text-gray-700 leading-relaxed uppercase space-y-4">
+                         {bodyLines.map((line, li) => {
+                           const cleanLine = line.trim().replace(/\*\*/g, '');
+                           if (!cleanLine) return <div key={li} className="h-2" />;
+                           
                            if (line.trim().startsWith('-')) {
-                             return <div key={li} className="flex gap-4 mb-2"><span className="text-[#2563EB]">🎯</span> {line.replace(/^-/, '').trim()}</div>;
+                             return (
+                               <div key={li} className="flex gap-4 p-4 bg-gray-50 border-l-8 border-[#2563EB] shadow-[4px_4px_0px_0px_rgba(0,0,0,0.05)]">
+                                 <span className="text-[#2563EB] font-black">🎯</span> 
+                                 <span>{cleanLine.replace(/^-/, '').trim()}</span>
+                               </div>
+                             );
                            }
-                           return <p key={li} className="mb-4">{line.trim()}</p>;
+                           return <p key={li}>{cleanLine}</p>;
                          })}
                       </div>
                     </div>
