@@ -122,25 +122,31 @@ export default function Navbar() {
                           initial={{ opacity: 0, y: 10, scale: 0.95 }}
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                          className="absolute right-0 mt-4 w-60 neo-box bg-white p-6 z-[100] shadow-[12px_12px_0px_0px_rgba(0,0,0,1)]"
+                          className="absolute right-0 mt-4 w-52 neo-box bg-white p-4 z-[100] shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]"
                         >
-                          <div className="flex flex-col gap-4">
-                            <div className="border-b-2 border-black/10 pb-4">
-                              <p className="font-black text-[10px] text-gray-400 uppercase tracking-widest mb-1">User Profile</p>
-                              <p className="font-black text-sm uppercase truncate">{userData?.name || 'User'}</p>
+                          <div className="flex flex-col gap-3">
+                            <div className="border-b-2 border-black/10 pb-3">
+                              <p className="font-black text-[10px] text-gray-400 uppercase tracking-widest mb-1">Account</p>
+                              <p className="font-black text-[10px] uppercase truncate">{userData?.name || 'User'}</p>
                             </div>
                             <Link 
                               href="/profile" 
                               onClick={() => setIsProfileOpen(false)}
-                              className="w-full flex items-center gap-3 px-4 py-3 text-[10px] font-black uppercase tracking-widest text-[#2563EB] border-2 border-[#2563EB] hover:bg-[#2563EB] hover:text-white transition-all"
+                              className="w-full flex items-center gap-3 px-3 py-2 text-[10px] font-black uppercase tracking-widest text-[#2563EB] border-2 border-[#2563EB] hover:bg-[#2563EB] hover:text-white transition-all"
                             >
-                              <Settings className="w-4 h-4" /> PROFILE SETTINGS
+                              <Settings className="w-3 h-3" /> SETTINGS
                             </Link>
                             <button 
                               onClick={() => { setIsProfileOpen(false); handleLogout(); }}
-                              className="w-full flex items-center gap-3 px-4 py-3 text-[10px] font-black uppercase tracking-widest text-red-600 border-2 border-red-600 hover:bg-red-600 hover:text-white transition-all"
+                              className="w-full flex items-center gap-3 px-3 py-2 text-[10px] font-black uppercase tracking-widest text-red-600 border-2 border-red-600 hover:bg-red-600 hover:text-white transition-all group"
                             >
-                              <LogOut className="w-4 h-4" /> LOGOUT
+                              <motion.div
+                                whileHover={{ x: 3 }}
+                                transition={{ repeat: Infinity, duration: 0.5, repeatType: "reverse" }}
+                              >
+                                <LogOut className="w-4 h-4" />
+                              </motion.div>
+                              LOGOUT
                             </button>
                           </div>
                         </motion.div>
