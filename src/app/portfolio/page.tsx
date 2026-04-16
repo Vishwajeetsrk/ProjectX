@@ -83,6 +83,7 @@ export default function PortfolioGenerator() {
   const [summary, setSummary] = useState('');
   const [achievements, setAchievements] = useState('');
   const [hobbies, setHobbies] = useState('');
+  const [profileImage, setProfileImage] = useState<string | null>(null);
 
   // Dynamic arrays
   const [projects, setProjects] = useState<Project[]>([{ topic: '', points: '', website: '' }]);
@@ -101,6 +102,15 @@ export default function PortfolioGenerator() {
   const addWork = () => setWorkExp(w => [...w, { title: '', company: '', points: '', startDate: '', endDate: '', isInternship: false }]);
   const removeWork = (i: number) => setWorkExp(w => w.filter((_, idx) => idx !== i));
   const updateWork = (i: number, f: keyof WorkExp, v: string | boolean) => setWorkExp(w => w.map((x, idx) => idx === i ? { ...x, [f]: v } : x));
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => setProfileImage(reader.result as string);
+      reader.readAsDataURL(file);
+    }
+  };
 
   const generatePortfolio = async () => {
     // 1. Safety Guard
@@ -360,6 +370,32 @@ export default function PortfolioGenerator() {
                   <h2 className="text-2xl font-black">Personal Information</h2>
                   <p className="text-gray-500 text-sm">This becomes your portfolio's hero section and contact info.</p>
                 </div>
+              </div>
+
+              {/* Profile Image Upload */}
+              <div className="flex flex-col md:flex-row items-center gap-6 p-6 bg-gray-50 border-2 border-black border-dashed">
+                 <div className="relative group">
+                    <div className="w-24 h-24 rounded-full border-4 border-black overflow-hidden bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                       {profileImage ? (
+                         <img src={profileImage} alt="Profile" className="w-full h-full object-cover" />
+                       ) : (
+                         <div className="w-full h-full flex items-center justify-center text-gray-300">
+                            <User className="w-10 h-10" />
+                         </div>
+                       )}
+                    </div>
+                    <label className="absolute -bottom-2 -right-2 p-2 bg-black text-white rounded-full cursor-pointer hover:scale-110 transition-all border-2 border-white shadow-lg">
+                       <Plus className="w-4 h-4" />
+                       <input type="file" hidden accept="image/*" onChange={handleImageUpload} />
+                    </label>
+                 </div>
+                 <div className="flex-1 space-y-1">
+                    <h4 className="font-black uppercase text-sm">Professional Headshot</h4>
+                    <p className="text-xs text-gray-500">Add a photo to make your portfolio look official. Pro tip: Use a clean background!</p>
+                    {profileImage && (
+                      <button onClick={() => setProfileImage(null)} className="text-[10px] font-black uppercase text-red-500 hover:underline">Remove Photo</button>
+                    )}
+                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -677,14 +713,24 @@ export default function PortfolioGenerator() {
             <div className="p-8 space-y-12 max-h-[80vh] overflow-y-auto">
                {/* Hero Preview */}
                <div className="space-y-4">
-                  <div className="flex items-center gap-4">
-                     <h1 className="text-5xl font-black uppercase italic leading-none">{fullName || "YOUR NAME"}</h1>
-                     <div className="flex gap-2">
-                        {linkedin && <Linkedin className="w-5 h-5 text-[#2563EB]" />}
-                        {github && <Github className="w-5 h-5 text-black" />}
+                  <div className="flex items-center gap-6">
+                     {profileImage && (
+                        <div className="relative shrink-0">
+                           <div className="absolute inset-0 bg-gradient-to-tr from-[#667eea] to-[#764ba2] rounded-full blur-md opacity-50" />
+                           <img src={profileImage} alt="Avatar" className="relative w-24 h-24 rounded-full border-4 border-black object-cover z-20 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]" />
+                        </div>
+                     )}
+                     <div className="space-y-2">
+                        <div className="flex items-center gap-4">
+                           <h1 className="text-4xl font-black uppercase italic leading-none">{fullName || "YOUR NAME"}</h1>
+                           <div className="flex gap-2">
+                              {linkedin && <Linkedin className="w-5 h-5 text-[#2563EB]" />}
+                              {github && <Github className="w-5 h-5 text-black" />}
+                           </div>
+                        </div>
+                        <p className="text-xl font-bold text-[#2563EB] uppercase tracking-widest">{targetRole || "PROFESSIONAL ROLE"}</p>
                      </div>
                   </div>
-                  <p className="text-xl font-bold text-[#2563EB] uppercase tracking-widest">{targetRole || "PROFESSIONAL ROLE"}</p>
                   <p className="text-sm text-gray-500 leading-relaxed font-bold uppercase">{summary || "Your AI-generated bio will appear here after parsing or enhancing..."}</p>
                </div>
 
