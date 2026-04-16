@@ -117,24 +117,49 @@ export default function AIAssistant() {
                   <motion.div 
                     initial={{ opacity: 0, x: msg.role === 'user' ? 20 : -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    className={`max-w-[90%] p-5 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-[14px] font-bold leading-relaxed rounded-md ${
+                    className={`max-w-[95%] p-5 border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] text-[13px] font-bold leading-relaxed rounded-sm whitespace-pre-wrap ${
                       msg.role === 'user' 
                         ? 'bg-[#2563EB] text-white' 
                         : 'bg-white text-black'
                     }`}
                   >
-                    {msg.content}
+                    {msg.content.split('\n').map((line, li) => {
+                      // Bullet points detection
+                      if (line.trim().startsWith('- ') || line.trim().startsWith('* ')) {
+                        return <div key={li} className="pl-4 py-1 flex gap-2"><span>•</span> {line.trim().substring(2)}</div>;
+                      }
+                      // Numbered lists
+                      if (/^\d+\./.test(line.trim())) {
+                        return <div key={li} className="pl-2 py-1 font-black underline decoration-2 decoration-[#2563EB]">{line}</div>;
+                      }
+                      // Special Bold headers
+                      if (line.startsWith('**') && line.endsWith('**')) {
+                        return <div key={li} className="text-[14px] font-black uppercase text-[#2563EB] mt-4 mb-2">{line.replace(/\*\*/g, '')}</div>;
+                      }
+                      return <div key={li} className={line.trim() === '' ? 'h-4' : ''}>{line}</div>;
+                    })}
                   </motion.div>
-                  {msg.links && msg.links.length > 0 && (
-                    <div className="mt-4 flex flex-wrap gap-3">
-                      {msg.links.map((link, li) => (
+
+                  {/* Smart Action Buttons */}
+                  {msg.role === 'assistant' && (
+                    <div className="mt-6 flex flex-wrap gap-4">
+                      {msg.content.includes('Profile Photo') && (
+                        <Link 
+                          href="/profile"
+                          className="px-6 py-3 bg-[#FACC15] border-2 border-black text-black text-[10px] font-black uppercase transition-all flex items-center gap-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 active:scale-95"
+                        >
+                          OPEN PROFILE ACTION <ArrowRight className="w-5 h-5" />
+                        </Link>
+                      )}
+                      
+                      {msg.links && msg.links.map((link, li) => (
                         <Link 
                           key={li}
-                          href={link.label === 'Fix Profile Photo' ? '/profile?action=fix' : link.url}
+                          href={link.url}
                           target={link.url.startsWith('http') ? '_blank' : '_self'}
-                          className="px-5 py-2.5 bg-white border-2 border-black text-black text-[11px] font-black uppercase transition-all flex items-center gap-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:bg-[#FACC15] hover:translate-x-1 hover:translate-y-1 active:scale-95"
+                          className="px-6 py-3 bg-white border-2 border-black text-black text-[10px] font-black uppercase transition-all flex items-center gap-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:bg-[#2563EB] hover:text-white hover:translate-x-1 hover:translate-y-1 active:scale-95"
                         >
-                          {link.label} <ArrowRight className="w-4 h-4" />
+                          {link.label} <ArrowRight className="w-5 h-5" />
                         </Link>
                       ))}
                     </div>
