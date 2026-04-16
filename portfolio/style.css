@@ -289,6 +289,43 @@ body {
 }
 
 /* Footer */
+/* Upload Section */
+.upload-container {
+    padding: 40px;
+    background: var(--white);
+    border: var(--border);
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+.upload-box {
+    border: 4px dashed var(--black);
+    padding: 60px 40px;
+    background: var(--gray);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    transition: background 0.2s;
+}
+
+.upload-box:hover {
+    background: #e5e7eb;
+}
+
+.upload-icon {
+    width: 64px;
+    height: 64px;
+    color: var(--blue);
+}
+
+.upload-box p {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+}
+
 .footer {
     background: var(--black);
     color: var(--white);
@@ -339,70 +376,10 @@ body {
     border-color: var(--blue);
 }
 
-.hero-actions {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-/* Resume Upload Box */
-.resume-upload-box {
-    background: var(--white);
-    border: var(--border);
-    padding: 30px;
-    margin-top: 40px;
-    text-align: center;
-    box-shadow: var(--shadow);
-    color: var(--black);
-}
-
-.resume-upload-box h3 {
-    font-size: 1.5rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-}
-
-.resume-upload-box p {
-    font-size: 13px;
-    font-weight: 700;
-    margin-bottom: 24px;
-    opacity: 0.7;
-}
-
-.upload-area {
-    position: relative;
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-.upload-area input {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    cursor: pointer;
-    z-index: 10;
-}
-
-.upload-label {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    padding: 40px;
-    border: 4px dashed var(--black);
-    background: var(--gray);
-    font-weight: 900;
-    text-transform: uppercase;
-    font-size: 12px;
-    transition: all 0.2s;
-}
-
-.upload-area:hover .upload-label {
-    background: var(--yellow);
-    border-style: solid;
+.btn-download:hover {
+    background: var(--black);
+    color: var(--yellow);
+    border-color: var(--yellow);
 }
 
 .footer-bottom {

@@ -16,14 +16,14 @@ The platform consists of **specialized AI-powered engines** designed to synchron
 
 1.  **🧠 IKIGAI Architect**: High-precision career diagnostics intersecting Passion, Skills, Market Demand, and Income.
 2.  **📄 AI Resume Forge**: Generate FAANG-optimized, ATS-hardened resumes with real-time PDF/DOCX rendering.
-3.  **🖼️ Portfolio Engine v2**: Now featuring a **Standalone Portfolio Hub**—instantly export high-performance, Neo-Brutalist web portfolios with integrated resume download/upload nodes.
-4.  **👥 Team Intelligence**: A high-density leadership grid with "Micro-Brief" interactive modals for organizational transparency.
-5.  **📊 Advanced ATS Analyzer**: Decrypt recruiter patterns and get eligibility scores vs specific Job Descriptions.
-6.  **🗺️ Roadmap Accelerator**: 90-day technical and professional progression paths tailored to the 2026 Indian ecosystem.
-7.  **💼 LinkedIn Pro Optimizer**: AI-driven headline, about section, and keyword tuning to rank in the top 1% of recruiters' searches.
-8.  **🤖 AI Strategist v2**: Expert AI agent synced with real-time salary trends and primary job portals.
-9.  **🌱 Community Hub**: A unified ecosystem for care-experienced individuals to connect, collaborate, and empower each other.
-10. **📑 Global Docs Hub**: Unified guidance on essential identity nodes (Aadhar, PAN, Passport).
+3.  **📊 Advanced ATS Analyzer**: Decrypt recruiter patterns and get eligibility scores vs specific Job Descriptions.
+4.  **🗺️ Roadmap Accelerator**: 90-day technical and professional progression paths tailored to the 2026 Indian ecosystem.
+5.  **💼 LinkedIn Pro Optimizer**: AI-driven headline, about section, and keyword tuning to rank in the top 1% of recruiters' searches.
+6.  **🖼️ Portfolio Engine**: Instantly transform professional data into high-performance, responsive web portfolios.
+7.  **🤖 AI Strategist v2**: Expert AI agent synced with real-time salary trends and primary job portals.
+8.  **🌱 Community Hub**: A unified ecosystem for care-experienced individuals to connect, collaborate, and empower each other.
+9.  **📑 Global Docs Hub**: Unified guidance on essential identity nodes (Aadhar, PAN, Passport) and legal professional requirements.
+10. **💆 Serenity AI**: Empathetic mental health companion for burnout and professional stress management.
 
 ---
 
@@ -33,66 +33,77 @@ The platform consists of **specialized AI-powered engines** designed to synchron
 - **Framework**: [Next.js 16.2+](https://nextjs.org/) (App Router, Turbopack, Server Components)
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) (Custom Neo-Brutalist Utility System)
 - **Animation**: [Framer Motion 12+](https://www.framer.com/motion/) (Micro-interactions & Physics)
-- **Standalone Hub**: Independent HTML5/CSS3/JS execution tier for portable career identities.
+- **Database**: [Firebase Cloud Firestore](https://firebase.google.com/) (Real-time Profile Synchronization)
+- **Authentication**: **Native Firebase Secure Protocol** (OIDC Social login via Google & GitHub with Popup/Redirect flows)
+- **Storage**: [Firebase Storage](https://firebase.google.com/) (Identity Assets & PDF Blobs)
+- **Edge Cache**: [Upstash Redis](https://upstash.com/) (AI Response Caching & Rate Limiting)
 
 ### AI Intelligence Protocol
-- **Primary Inference**: Groq (Llama-3.3-70b-versatile) & OpenRouter.
-- **Portfolio API**: Stabilized with high-fidelity system prompts and multi-fallback intelligence.
-- **Safety**: Robust `aiGuard` and Firebase Secure Auth (OAuth 2.1) integration.
+- **Groq & Llama 3**: Primary ultra-fast inference for conversational agents.
+- **OpenRouter (GPT-4o)**: Complex reasoning and resume architecture engine.
+- **Google Gemini 1.5 Flash**: Multimodal analysis for vision-based resume parsing.
+- **Strategic Caching**: All AI responses are cached at the edge via Redis to ensure sub-100ms response times for repeat queries.
 
 ---
 
 ## 🏁 Development Protocol
 
-### Standalone Portfolio Deployment
-To deploy your portable resume-portfolio:
-1.  Navigate to `/portfolio`.
-2.  Add your `resume.pdf` to the directory.
-3.  Compress the contents into `portfolio-source.zip` to enable the built-in "Download Source" feature.
-4.  Upload the folder to any static hosting provider (Vercel, Netlify, or GitHub Pages).
+### Prerequisites
+- Node.js >= 20.x
+- npm >= 10.x
+- Active Firebase, Upstash, and OpenRouter API credentials.
 
----
-
-## 🚀 Version Control & Synchronization
-To synchronize local modifications:
-
+### Installation & Initialization
 ```bash
-# 1. Stage all modifications (Auth fixes, Team Page overhaul, Portfolio Hub)
-git add .
+# 1. Clone the identity node
+git clone https://github.com/Vishwajeetsrk/dreamssync_test.git
+cd dreamssync_test
 
-# 2. Commit with professional context
-git commit -m "feat: stabilize portfolio API and launch high-fidelity standalone hub"
+# 2. Synchronize Dependencies
+npm install --legacy-peer-deps
 
-# 3. Push to High-Level Remotes
-git push origin main
+# 3. Configure Environment Nodes
+# Create .env.local and populate with:
+# NEXT_PUBLIC_FIREBASE_*, GOOGLE_CLIENT_ID, GITHUB_CLIENT_ID, 
+# GROQ_API_KEY, UPSTASH_REDIS_REST_URL, etc.
+
+# 4. Initialize Development Accelerator
+npm run dev
 ```
 
 ---
 
+## 🚀 Version Control & Synchronization
+
+To synchronize local modifications with the primary and mirror repositories:
+
+```bash
+# 1. Stage all modifications
+git add .
+
+# 2. Commit with professional context
+git commit -m "feat: stabilize core auth nodes and optimize AI edge caching"
+
+# 3. Push to High-Level Remotes
+git push origin main
+git push secondary main
+```
+
 ---
 
 ## 📄 Integrity & Security
-- **Auth Recovery**: Resolved `popup-closed-by-user` and `account-exists-with-different-credential` errors.
-- **Aspect Ratio**: Standardized all branding assets for LCP optimization.
+- **Identity Protection**: Native Firebase Secure Auth ensures sub-millisecond validation for Google and GitHub accounts.
+- **Protocol Safety**: `aiGuard` filtering prevents generation of unprofessional or illegal career content.
+- **Rate Limit**: Enforced via Upstash Redis (Sliding Window Algorithm) to prevent API exhaustion.
 
 ---
 
-## 📅 Today's Development Changelog (2026-04-17)
+## 💖 Community Stewardship
+DreamSync is a 100% community-supported platform. We remove financial barriers for students through donor contributions that sustain our high-performance AI infrastructure.
 
-### 👥 Team Operations Engine
-- **Unified Grid Implementation**: Consolidated all leadership and operations nodes into a responsive, single-page grid.
-- **Micro-Brief Interface**: Launched interactive, compact modals for detailed member insights without layout clutter.
-- **Neo-Brutalist Styling**: Applied high-contrast borders and tactile hover states for an elite professional aesthetic.
-
-### 🖼️ Standalone Portfolio Hub v2
-- **Full SPA Integration**: Built a portable HTML/CSS/JS portfolio tier with smooth-scrolling navigation (Home, About, Skills, Experience).
-- **Resume Management Node**: Integrated a direct "Download Resume" action and a professional "Resume Submission" dropzone.
-- **Source Export**: Added a "Download Source" feature to allow users to instantly acquire their portfolio code package.
-
-### 🧠 AI & Backend Stabilization
-- **Portfolio API v2**: Implemented a 5-tier parsing engine (Strict JSON, Regex Extraction, Markdown Fence Recovery, Tag Sweeping) to handle diverse AI response formats.
-- **Auth Resilience**: Added specialized error handling for multi-provider conflicts and popup interruptions.
-- **Branding Sync**: Resolved all LCP and image ratio warnings for the official DreamSync logo across the landing and login portals.
+**Support the Protocol:**
+- **UPI**: `vishwajeetsrk-1@okhdfcbank`
+- **Official Portal**: [Donate Hub](https://dreamsync-ruddy.vercel.app/donate)
 
 ---
 
