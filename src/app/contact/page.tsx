@@ -1,12 +1,25 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MessageCircle, Send, MapPin, Globe, CheckCircle2, Loader2, Star, ShieldCheck } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const applyRole = params.get('apply');
+      if (applyRole) {
+        setFormData(prev => ({
+          ...prev,
+          message: `Dear DreamSync Team,\n\nI would like to apply for the position of "${applyRole}" featured on the Community page.\n\nPlease find my contact details above. I look forward to hearing from you!`
+        }));
+      }
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

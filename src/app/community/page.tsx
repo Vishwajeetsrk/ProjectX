@@ -27,9 +27,9 @@ export default function CommunityPage() {
   }, []);
 
   const activities = [
-    { id: 1, name: 'Support Circle Meetup', type: 'Meetup', icon: Users, date: 'Every Saturday, 4:00 PM', location: 'Online', joined: 24, theme: 'blue' },
-    { id: 2, name: 'Daily Study Group', type: 'Study', icon: GraduationCap, date: 'Every Day, 6:00 PM', location: 'Online', joined: 12, theme: 'emerald' },
-    { id: 3, name: 'Weekend Football Mock', type: 'Sports', icon: Heart, date: 'Sunday, 7:00 AM', location: 'Local Park (Near You)', joined: 18, theme: 'amber' },
+    { id: 1, name: 'Support Circle Meetup', type: 'Meetup', icon: Users, date: 'Every Saturday, 4:00 PM', location: 'Online', joined: 1, theme: 'blue', link: 'https://chat.whatsapp.com/CwkkbnMMMqg9U0fPfKy44M' },
+    { id: 2, name: 'Daily Study Group', type: 'Study', icon: GraduationCap, date: 'Every Day, 6:00 PM', location: 'Online', joined: 1, theme: 'emerald', link: 'https://chat.whatsapp.com/CM4p1wmOiXkEMNnRUkjDKi' },
+    { id: 3, name: 'Weekend Football Mock', type: 'Sports', icon: Heart, date: 'Sunday, 7:00 AM', location: 'Local Park (Near You)', joined: 1, theme: 'amber', link: 'https://chat.whatsapp.com/HSgs3LzY852LKLNAV65G63' },
   ];
 
   const opportunities = [
@@ -132,7 +132,7 @@ export default function CommunityPage() {
                       </div>
                       <span className="text-xs font-bold text-stone-400">{activity.joined} people joined</span>
                     </div>
-                    <button className="btn-primary !px-5 !py-2 !text-xs !rounded-xl">Join Now</button>
+                    <a href={activity.link} target="_blank" rel="noopener noreferrer" className="btn-primary !px-5 !py-2 !text-xs !rounded-xl">Join Now</a>
                   </div>
                 </motion.div>
               ))}
@@ -147,7 +147,7 @@ export default function CommunityPage() {
                 <h3 className="text-xl font-bold text-stone-900">Don't see what you like?</h3>
                 <p className="text-stone-500 font-medium">Suggest an activity or start your own community group.</p>
               </div>
-              <button className="btn-secondary !bg-white whitespace-nowrap md:ml-auto">Start a Group</button>
+              <a href="https://chat.whatsapp.com/DBa4lb1Fap56sgM0wQw06T" target="_blank" rel="noopener noreferrer" className="btn-secondary !bg-white whitespace-nowrap md:ml-auto">Start a Group</a>
             </div>
           </div>
 
@@ -186,9 +186,9 @@ export default function CommunityPage() {
                     </div>
                   </div>
 
-                  <button className="w-full mt-6 py-3 border border-stone-100 rounded-xl text-stone-600 text-sm font-bold group-hover:bg-emerald-600 group-hover:text-white group-hover:border-emerald-600 transition-all flex items-center justify-center gap-2">
+                  <Link href={`/contact?apply=${encodeURIComponent(opp.title)}`} className="w-full mt-6 py-3 border border-stone-100 rounded-xl text-stone-600 text-sm font-bold group-hover:bg-emerald-600 group-hover:text-white group-hover:border-emerald-600 transition-all flex items-center justify-center gap-2">
                     Apply Now <ArrowRight className="w-4 h-4" />
-                  </button>
+                  </Link>
                 </motion.div>
               ))}
               
