@@ -41,6 +41,13 @@ function ProfileContent() {
   const [uploading, setUploading] = useState(false);
   const [name, setName] = useState('');
   const [avatarUrl, setAvatarUrl] = useState('');
+  const [bio, setBio] = useState('');
+  const [skills, setSkills] = useState('');
+  const [linkedin, setLinkedin] = useState('');
+  const [github, setGithub] = useState('');
+  const [resumeUrl, setResumeUrl] = useState('');
+  const [resumeName, setResumeName] = useState('');
+  const [resumeUploading, setResumeUploading] = useState(false);
   const [activeTab, setActiveTab] = useState('profile');
   const [timezone, setTimezone] = useState('Asia/Kolkata');
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
@@ -64,6 +71,12 @@ function ProfileContent() {
         const data = docSnap.data();
         setName(data.name || '');
         setAvatarUrl(data.avatar_url || '');
+        setBio(data.bio || '');
+        setSkills(data.skills || '');
+        setLinkedin(data.linkedin || '');
+        setGithub(data.github || '');
+        setResumeUrl(data.resume_url || '');
+        setResumeName(data.resume_name || 'My_Resume.pdf');
       }
       setLoading(false);
 
@@ -105,6 +118,10 @@ function ProfileContent() {
       await setDoc(doc(db, 'users', user.uid), {
         name,
         avatar_url: avatarUrl,
+        bio,
+        skills,
+        linkedin,
+        github,
         updated_at: new Date().toISOString(),
       }, { merge: true });
       setMessage({ type: 'success', text: 'Profile updated successfully' });
@@ -112,6 +129,50 @@ function ProfileContent() {
       setMessage({ type: 'error', text: err.message });
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleResumeUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (file.type !== 'application/pdf') {
+      setMessage({ type: 'error', text: 'Please upload a PDF file only' });
+      return;
+    }
+
+    setResumeUploading(true);
+    try {
+      const storageRef = ref(storage, `resumes/${user.uid}/${file.name}`);
+      await uploadBytes(storageRef, file);
+      const url = await getDownloadURL(storageRef);
+      setResumeUrl(url);
+      setResumeName(file.name);
+      await setDoc(doc(db, 'users', user.uid), { resume_url: url, resume_name: file.name }, { merge: true });
+      setMessage({ type: 'success', text: 'Resume uploaded successfully' });
+    } catch (err: any) {
+      // Fallback base64 upload if storage fails
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = async () => {
+        const base64data = reader.result as string;
+        try {
+          setResumeUrl(base64data);
+          setResumeName(file.name);
+          await setDoc(doc(db, 'users', user.uid), { resume_url: base64data, resume_name: file.name }, { merge: true });
+          setMessage({ type: 'success', text: 'Resume uploaded locally' });
+        } catch (dbErr: any) {
+          setMessage({ type: 'error', text: 'File too large to sync locally' });
+        } finally {
+          setResumeUploading(false);
+        }
+      };
+      return;
+    } finally {
+      // Keep loading active for base64 reader if it entered catch, otherwise close
+      if (e.target.files?.[0]) {
+        // Safe check
+      }
+      setResumeUploading(false);
     }
   };
 
@@ -313,21 +374,115 @@ function ProfileContent() {
                     </h3>
                   </div>
                   
-                  <form onSubmit={handleUpdateProfile} className="space-y-10">
-                    <div className="space-y-4">
-                      <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest ml-1">Your Full Name</label>
-                      <input 
-                        type="text" 
-                        value={name} 
-                        onChange={(e) => setName(e.target.value)} 
-                        className="input-field text-xl font-bold" 
-                        placeholder="John Doe"
+                  <form onSubmit={handleUpdateProfile} className="space-y-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-3">
+                        <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest ml-1">Your Full Name</label>
+                        <input 
+                          type="text" 
+                          value={name} 
+                          onChange={(e) => setName(e.target.value)} 
+                          className="input-field font-bold" 
+                          placeholder="John Doe"
+                        />
+                      </div>
+
+                      <div className="space-y-3">
+                        <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest ml-1">Key Skills</label>
+                        <input 
+                          type="text" 
+                          value={skills} 
+                          onChange={(e) => setSkills(e.target.value)} 
+                          className="input-field font-semibold" 
+                          placeholder="e.g. Communication, React, sales"
+                        />
+                      </div>
+
+                      <div className="space-y-3">
+                        <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest ml-1">LinkedIn Profile</label>
+                        <input 
+                          type="text" 
+                          value={linkedin} 
+                          onChange={(e) => setLinkedin(e.target.value)} 
+                          className="input-field font-semibold" 
+                          placeholder="https://linkedin.com/in/username"
+                        />
+                      </div>
+
+                      <div className="space-y-3">
+                        <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest ml-1">GitHub Profile</label>
+                        <input 
+                          type="text" 
+                          value={github} 
+                          onChange={(e) => setGithub(e.target.value)} 
+                          className="input-field font-semibold" 
+                          placeholder="https://github.com/username"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-3 pt-2">
+                      <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest ml-1">Bio / Professional Summary</label>
+                      <textarea 
+                        value={bio} 
+                        onChange={(e) => setBio(e.target.value)} 
+                        rows={4}
+                        className="input-field min-h-[100px] py-3 font-semibold" 
+                        placeholder="Tell companies what motivates you..."
                       />
+                    </div>
+
+                    {/* Resume Section */}
+                    <div className="pt-6 border-t border-stone-50 space-y-4">
+                      <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest ml-1 flex items-center gap-2">
+                        <span>Career Resume (PDF)</span>
+                      </label>
+                      
+                      <div className="flex flex-col md:flex-row items-center gap-6 p-6 bg-stone-50 rounded-[2rem] border border-stone-100 border-dashed">
+                        <div className="flex-1 space-y-1 text-center md:text-left">
+                          <h4 className="font-bold text-stone-800">
+                            {resumeUrl ? `Uploaded: ${resumeName}` : 'No resume uploaded yet'}
+                          </h4>
+                          <p className="text-xs text-stone-400 font-medium">
+                            Upload your professional PDF resume so employers can view it.
+                          </p>
+                          {resumeUrl && (
+                            <div className="flex flex-wrap gap-4 mt-3 justify-center md:justify-start">
+                              <a 
+                                href={resumeUrl} 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="text-xs font-extrabold text-blue-600 hover:underline flex items-center gap-1.5"
+                              >
+                                View Current Resume
+                              </a>
+                              <button 
+                                type="button"
+                                onClick={async () => {
+                                  setResumeUrl('');
+                                  setResumeName('');
+                                  await setDoc(doc(db, 'users', user.uid), { resume_url: '', resume_name: '' }, { merge: true });
+                                  setMessage({ type: 'success', text: 'Resume removed' });
+                                }} 
+                                className="text-xs font-bold text-rose-500 hover:underline"
+                              >
+                                Remove Resume
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                        
+                        <label className="px-6 py-3 bg-white hover:bg-stone-50 text-stone-700 font-bold border border-stone-200 rounded-xl cursor-pointer transition-all text-xs uppercase tracking-widest shrink-0 shadow-sm flex items-center gap-2">
+                          {resumeUploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
+                          {resumeUploading ? 'Uploading...' : 'Upload PDF'}
+                          <input type="file" hidden accept=".pdf" onChange={handleResumeUpload} />
+                        </label>
+                      </div>
                     </div>
 
                     <div className="pt-6 border-t border-stone-50">
                        <button type="submit" className="btn-primary px-12 !py-4 flex items-center justify-center gap-4 group">
-                         <Save className="w-5 h-5 group-hover:scale-110 transition-transform" /> <span>Update Profile Identity</span>
+                         <Save className="w-5 h-5 group-hover:scale-110 transition-transform" /> <span>Update Profile Details</span>
                        </button>
                     </div>
                   </form>
