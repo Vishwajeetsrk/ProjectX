@@ -32,14 +32,17 @@ import {
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import { useLanguage } from '@/context/LanguageContext';
 
 function ProfileContent() {
+  const { language, setLanguage, t } = useLanguage();
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
   const [name, setName] = useState('');
   const [avatarUrl, setAvatarUrl] = useState('');
   const [activeTab, setActiveTab] = useState('profile');
+  const [timezone, setTimezone] = useState('Asia/Kolkata');
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -207,24 +210,30 @@ function ProfileContent() {
             </h1>
           </div>
           
-          <div className="bg-white p-2 rounded-[2rem] border border-stone-100 shadow-xl shadow-stone-200/50 flex gap-1">
+          <div className="bg-white p-2 rounded-[2rem] border border-stone-100 shadow-xl shadow-stone-200/50 flex gap-1 overflow-x-auto scrollbar-hide max-w-full">
             <button 
               onClick={() => setActiveTab('profile')}
-              className={`px-8 py-4 rounded-[1.5rem] font-bold text-xs uppercase tracking-widest transition-all ${activeTab === 'profile' ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20' : 'text-stone-400 hover:bg-stone-50'}`}
+              className={`px-6 py-3 md:px-8 md:py-4 rounded-[1.5rem] font-bold text-xs uppercase tracking-widest transition-all whitespace-nowrap ${activeTab === 'profile' ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20' : 'text-stone-400 hover:bg-stone-50'}`}
             >
               Identity
             </button>
             <button 
-              onClick={() => setActiveTab('settings')}
-              className={`px-8 py-4 rounded-[1.5rem] font-bold text-xs uppercase tracking-widest transition-all ${activeTab === 'settings' ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20' : 'text-stone-400 hover:bg-stone-50'}`}
+              onClick={() => setActiveTab('security')}
+              className={`px-6 py-3 md:px-8 md:py-4 rounded-[1.5rem] font-bold text-xs uppercase tracking-widest transition-all whitespace-nowrap ${activeTab === 'security' ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20' : 'text-stone-400 hover:bg-stone-50'}`}
             >
               Security
+            </button>
+            <button 
+              onClick={() => setActiveTab('settings')}
+              className={`px-6 py-3 md:px-8 md:py-4 rounded-[1.5rem] font-bold text-xs uppercase tracking-widest transition-all whitespace-nowrap ${activeTab === 'settings' ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20' : 'text-stone-400 hover:bg-stone-50'}`}
+            >
+              Settings
             </button>
           </div>
         </header>
 
         <AnimatePresence mode="wait">
-          {activeTab === 'profile' ? (
+          {activeTab === 'profile' && (
             <motion.div 
               key="profile" 
               initial={{ opacity: 0, y: 15 }} 
@@ -334,9 +343,11 @@ function ProfileContent() {
                 </div>
               </div>
             </motion.div>
-          ) : (
+          )}
+
+          {activeTab === 'security' && (
             <motion.div 
-              key="settings" 
+              key="security" 
               initial={{ opacity: 0, scale: 0.98 }} 
               animate={{ opacity: 1, scale: 1 }} 
               exit={{ opacity: 0, scale: 0.98 }} 
@@ -407,6 +418,82 @@ function ProfileContent() {
               </div>
             </motion.div>
           )}
+
+          {activeTab === 'settings' && (
+            <motion.div 
+              key="settings" 
+              initial={{ opacity: 0, scale: 0.98 }} 
+              animate={{ opacity: 1, scale: 1 }} 
+              exit={{ opacity: 0, scale: 0.98 }} 
+              className="space-y-12"
+            >
+              <div className="bg-white p-10 md:p-16 rounded-[3rem] border border-stone-100 shadow-xl shadow-stone-200/50 space-y-12">
+                <div className="space-y-4">
+                  <h3 className="text-xs font-bold uppercase tracking-[0.4em] text-stone-300 flex items-center gap-3">
+                    <Settings className="w-5 h-5" /> System Settings
+                  </h3>
+                  <h2 className="text-3xl font-extrabold text-stone-900 tracking-tight">Preferences & Locale</h2>
+                </div>
+
+                <form onSubmit={(e) => {
+                  e.preventDefault();
+                  setLoading(true);
+                  setTimeout(() => {
+                    setLoading(false);
+                    setMessage({ type: 'success', text: 'System settings updated successfully' });
+                  }, 600);
+                }} className="space-y-10 max-w-2xl">
+                  
+                  {/* Language Option */}
+                  <div className="space-y-4">
+                    <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest ml-1 flex items-center gap-2">
+                      <Globe className="w-3.5 h-3.5" /> Language Preference
+                    </label>
+                    <div className="grid grid-cols-2 gap-4">
+                       <button
+                         type="button"
+                         onClick={() => setLanguage('en')}
+                         className={`p-6 rounded-[1.5rem] border font-bold text-left transition-all ${language === 'en' ? 'border-blue-500 bg-blue-50 text-blue-700 shadow-sm' : 'border-stone-100 bg-white text-stone-600 hover:border-stone-200'}`}
+                       >
+                         <p className="text-sm">English</p>
+                         <p className="text-[10px] font-bold uppercase tracking-widest opacity-60 mt-1">Default</p>
+                       </button>
+                       <button
+                         type="button"
+                         onClick={() => setLanguage('hi')}
+                         className={`p-6 rounded-[1.5rem] border font-bold text-left transition-all ${language === 'hi' ? 'border-blue-500 bg-blue-50 text-blue-700 shadow-sm' : 'border-stone-100 bg-white text-stone-600 hover:border-stone-200'}`}
+                       >
+                         <p className="text-sm">हिन्दी</p>
+                         <p className="text-[10px] font-bold uppercase tracking-widest opacity-60 mt-1">Hindi</p>
+                       </button>
+                    </div>
+                  </div>
+
+                  {/* Timezone Option */}
+                  <div className="space-y-3">
+                    <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest ml-1">Timezone</label>
+                    <select
+                      value={timezone}
+                      onChange={(e) => setTimezone(e.target.value)}
+                      className="input-field text-sm font-bold bg-white"
+                    >
+                      <option value="Asia/Kolkata">Asia/Kolkata (IST - UTC+05:30)</option>
+                      <option value="UTC">UTC (Coordinated Universal Time)</option>
+                      <option value="America/New_York">America/New_York (EST/EDT)</option>
+                      <option value="Europe/London">Europe/London (GMT/BST)</option>
+                      <option value="Asia/Singapore">Asia/Singapore (SGT - UTC+08:00)</option>
+                    </select>
+                  </div>
+
+                  <div className="pt-6 border-t border-stone-50">
+                     <button type="submit" className="btn-primary px-12 !py-4 flex items-center justify-center gap-4 group">
+                       <Save className="w-5 h-5 group-hover:scale-110 transition-transform" /> <span>Save Preferences</span>
+                     </button>
+                  </div>
+                </form>
+              </div>
+            </motion.div>
+          )        }
         </AnimatePresence>
 
         {/* Floating Feedback */}
