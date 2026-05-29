@@ -10,7 +10,7 @@ const redis = new Redis({
 });
 
 const portfolioSchema = z.object({
-  theme: z.enum(['minimal-dev', 'neo-brutalism', 'glass-dark', 'data-pro']).default('minimal-dev'),
+  theme: z.enum(['minimal-dev', 'neo-brutalism', 'glass-dark', 'data-pro', 'soft-warm', 'glass-light', 'emerald-pro']).default('minimal-dev'),
   data: z.object({
     fullName: z.string().optional(),
     email: z.string().optional(),
@@ -32,6 +32,32 @@ const portfolioSchema = z.object({
 });
 
 function buildThemePrompt(theme: string): string {
+  if (theme === 'soft-warm') return `
+THEME: Soft Warm. Use these EXACT styles:
+- Background: #FFFBF5 (warm cream) to #FFF1F2 (soft rose) gradient.
+- Typography: 'Outfit' or 'Playfair Display' for headings, 'Inter' for body.
+- Palette: Primary #f43f5e (rose), Secondary #fb7185, Accent #e11d48.
+- Cards: warm soft rose border, white background with very light rose shadow.
+- Buttons: Warm rose bg with white text, pill shape, soft glow.
+- Styling details: empathetic, elegant, gentle curves, friendly and inviting UI.
+`;
+  if (theme === 'glass-light') return `
+THEME: Modern Glass UI (Light). Use these EXACT styles:
+- Background: semi-transparent glassy gradient #F1F5F9 to #E2E8F0.
+- Typography: 'Plus Jakarta Sans' for headings and body.
+- Palette: Primary #8B5CF6 (violet), Secondary #EC4899 (pink).
+- Cards: backdrop-filter: blur(20px), background: rgba(255, 255, 255, 0.4), border: 1px solid rgba(255, 255, 255, 0.6).
+- Buttons: gradient bg from violet to pink, no border, rounded-full.
+- Styling details: modern glassmorphism, floating cards, subtle purple/pink glows.
+`;
+  if (theme === 'emerald-pro') return `
+THEME: Emerald Success (Professional). Use these EXACT styles:
+- Background: #F0FDF4 (mint white) to #F9FBF9 gradient.
+- Typography: 'Plus Jakarta Sans' or 'Inter'.
+- Palette: Primary #10B981 (emerald), Secondary #059669, Accent #34D399.
+- Cards: pure white with emerald border accents.
+- Buttons: Emerald green with white text, modern shadow, sharp but professional look.
+`;
   if (theme === 'neo-brutalism') return `
 THEME: Neo-Brutalism. Use these EXACT styles:
 - Background: #FFFBF5 (cream white)

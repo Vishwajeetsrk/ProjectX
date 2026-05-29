@@ -121,6 +121,9 @@ export default function ResumeBuilder() {
   const handlePrint = useReactToPrint({
     contentRef: componentRef,
     documentTitle: `${data.personalInfo.fullName.replace(/\s/g, '_')}_Resume`,
+    onAfterPrint: () => {
+      fetch('/api/stats', { method: 'POST' }).catch(err => console.error(err));
+    }
   });
 
   const handleImportPdf = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -188,6 +191,7 @@ export default function ResumeBuilder() {
     });
     const blob = await Packer.toBlob(doc);
     saveAs(blob, `${data.personalInfo.fullName.replace(/\s/g, '_')}_Resume.docx`);
+    fetch('/api/stats', { method: 'POST' }).catch(err => console.error(err));
   };
 
   const updatePersonalInfo = (field: string, value: string) => {

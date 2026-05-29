@@ -2,11 +2,29 @@
 
 import { motion } from 'framer-motion';
 import { Users, Calendar, MapPin, Briefcase, GraduationCap, Heart, Search, Filter, ArrowRight, UserPlus, CheckCircle2, Globe, Clock, IndianRupee } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 export default function CommunityPage() {
   const [activeFilter, setActiveFilter] = useState('All');
+  const [stats, setStats] = useState({
+    activeMembers: '1+',
+    weeklyActivities: '1+',
+    successfulPlacements: '1+'
+  });
+
+  useEffect(() => {
+    fetch('/api/stats')
+      .then(res => res.json())
+      .then(data => {
+        setStats({
+          activeMembers: `${Math.max(1, data.happyStudents || 1)}+`,
+          weeklyActivities: `${Math.max(1, data.weeklyActivities || 1)}+`,
+          successfulPlacements: `${Math.max(1, data.successfulPlacements || 1)}+`
+        });
+      })
+      .catch(err => console.error('Error fetching community stats:', err));
+  }, []);
 
   const activities = [
     { id: 1, name: 'Support Circle Meetup', type: 'Meetup', icon: Users, date: 'Every Saturday, 4:00 PM', location: 'Online', joined: 24, theme: 'blue' },
@@ -186,15 +204,15 @@ export default function CommunityPage() {
         <section className="bg-white rounded-[32px] p-12 border border-stone-100 shadow-sm">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
             <div className="space-y-2">
-              <p className="text-4xl font-extrabold text-blue-600">5,000+</p>
+              <p className="text-4xl font-extrabold text-blue-600">{stats.activeMembers}</p>
               <p className="text-sm font-bold text-stone-400 uppercase tracking-widest">Active Members</p>
             </div>
             <div className="space-y-2">
-              <p className="text-4xl font-extrabold text-emerald-600">120+</p>
+              <p className="text-4xl font-extrabold text-emerald-600">{stats.weeklyActivities}</p>
               <p className="text-sm font-bold text-stone-400 uppercase tracking-widest">Weekly Activities</p>
             </div>
             <div className="space-y-2">
-              <p className="text-4xl font-extrabold text-amber-600">450+</p>
+              <p className="text-4xl font-extrabold text-amber-600">{stats.successfulPlacements}</p>
               <p className="text-sm font-bold text-stone-400 uppercase tracking-widest">Successful Placements</p>
             </div>
           </div>

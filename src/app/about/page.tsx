@@ -146,7 +146,7 @@ export default function About() {
           className="flex whitespace-nowrap gap-20 font-bold text-xs uppercase tracking-widest text-stone-400 items-center"
         >
           <div className="flex items-center gap-3"><TrendingUp className="w-5 h-5 text-blue-600" /> Empowering Care-Experienced Youth</div>
-          <div className="flex items-center gap-3"><Globe className="w-5 h-5 text-emerald-500" /> Impacting Bangalore & Kashmir</div>
+          <div className="flex items-center gap-3"><Globe className="w-5 h-5 text-emerald-500" /> Impacting Bangalore</div>
           <div className="flex items-center gap-3"><HeartHandshake className="w-5 h-5 text-rose-500" /> A Positive Community Culture</div>
           <div className="flex items-center gap-3"><TrendingUp className="w-5 h-5 text-blue-600" /> Empowering Care-Experienced Youth</div>
         </motion.div>

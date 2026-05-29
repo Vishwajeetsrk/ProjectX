@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight, BookOpen, Brain, Briefcase, CheckCircle, FileText, HeartHandshake, Link2, Sparkles, LayoutDashboard, User, Zap, Globe, ShieldCheck, HelpCircle, Map } from 'lucide-react';
+import { ArrowRight, BookOpen, Brain, Briefcase, CheckCircle, FileText, HeartHandshake, Link2, Sparkles, LayoutDashboard, User, Zap, Globe, ShieldCheck, HelpCircle, Map, AlertCircle } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
@@ -42,6 +42,15 @@ export default function Dashboard() {
 
   const userName = userData?.name?.split(' ')[0] || user.email?.split('@')[0] || "Dreamer";
 
+  const profileScore = (() => {
+    let score = 20; // Base score for registration
+    if (userData?.name || user?.displayName) score += 25;
+    if (userData?.avatar_url || user?.photoURL) score += 20;
+    if (userData?.email || user?.email) score += 20;
+    if (userData?.provider || user?.uid) score += 15;
+    return score;
+  })();
+
   return (
     <div className="min-h-screen bg-stone-50/50 pt-40 pb-24 px-6 md:px-12 selection:bg-blue-100">
       <div className="max-w-7xl mx-auto space-y-16">
@@ -53,7 +62,7 @@ export default function Dashboard() {
                <LayoutDashboard className="w-4 h-4" /> Your Sanctuary
             </div>
             <h1 className="text-5xl md:text-7xl font-extrabold text-stone-900 tracking-tight leading-tight">
-              Welcome back, <br /> <span className="text-blue-600">{userName}!</span> 🌸
+              Welcome back, <br /> <span className="text-blue-600">{userName}!</span>
             </h1>
             <p className="text-lg text-stone-500 font-medium max-w-xl">
                Every small step you take today is a giant leap for your future self. Which tool do you need today?
@@ -63,10 +72,18 @@ export default function Dashboard() {
           <div className="flex bg-white p-2 rounded-[2rem] border border-stone-100 shadow-sm no-print">
              <div className="px-6 py-3 bg-stone-50 rounded-[1.5rem] border border-stone-100 text-center">
                 <p className="text-[10px] font-bold text-stone-300 uppercase tracking-widest">Profile Score</p>
-                <p className="text-xl font-extrabold text-stone-800">85%</p>
+                <p className="text-xl font-extrabold text-stone-800">{profileScore}%</p>
              </div>
              <div className="px-8 py-3 flex flex-col justify-center">
-                <div className="flex items-center gap-2 text-xs font-bold text-emerald-600"><CheckCircle className="w-4 h-4" /> Ready for hire</div>
+                {profileScore < 85 ? (
+                  <div className="flex items-center gap-2 text-xs font-bold text-amber-600">
+                    <AlertCircle className="w-4 h-4" /> Complete Profile
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2 text-xs font-bold text-emerald-600">
+                    <CheckCircle className="w-4 h-4" /> Ready for hire
+                  </div>
+                )}
                 <p className="text-[10px] font-medium text-stone-400 mt-1 uppercase tracking-tight italic">Last updated: Today</p>
              </div>
           </div>

@@ -45,6 +45,24 @@ const Step = ({ number, title, desc, icon: Icon }: { number: string, title: stri
 
 export default function Home() {
   const { user, userData } = useAuth();
+  const [stats, setStats] = useState({
+    happyStudents: '1+',
+    resumesCreated: '0+',
+    supportLocations: '1+'
+  });
+
+  useEffect(() => {
+    fetch('/api/stats')
+      .then(res => res.json())
+      .then(data => {
+        setStats({
+          happyStudents: `${data.happyStudents}+`,
+          resumesCreated: `${data.resumesCreated}+`,
+          supportLocations: `${data.supportLocations || 1}+`
+        });
+      })
+      .catch(err => console.error('Error loading dynamic metrics:', err));
+  }, []);
 
   const features = [
     { title: 'Best Career Finder', desc: 'Find the heart of your career. Discover what you love and what pays well with AI coaching.', icon: Brain, href: "/ikigai" },
@@ -147,9 +165,9 @@ export default function Home() {
       <section className="section-padding">
         <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
           {[
-            { val: '10+', label: 'Support Locations', icon: MapPin, color: 'text-blue-600', bg: 'bg-blue-50' },
-            { val: '500+', label: 'Happy Students', icon: Users, color: 'text-emerald-600', bg: 'bg-emerald-50' },
-            { val: '1000+', label: 'Resumes Created', icon: FileText, color: 'text-amber-600', bg: 'bg-amber-50' },
+            { val: stats.supportLocations, label: 'Support Locations', icon: MapPin, color: 'text-blue-600', bg: 'bg-blue-50' },
+            { val: stats.happyStudents, label: 'Happy Students', icon: Users, color: 'text-emerald-600', bg: 'bg-emerald-50' },
+            { val: stats.resumesCreated, label: 'Resumes Created', icon: FileText, color: 'text-amber-600', bg: 'bg-amber-50' },
             { val: '24/7', label: 'AI Support', icon: HeartHandshake, color: 'text-rose-600', bg: 'bg-rose-50' },
           ].map((stat, i) => (
             <motion.div
