@@ -151,8 +151,10 @@ export default function CareerPathCard({ path }: { path: CareerPath }) {
       animate={{ opacity: 1, y: 0 }}
       className="bg-white border border-stone-100 rounded-[2.5rem] shadow-sm overflow-hidden"
     >
-      {/* Header Banner */}
-      <div className={`p-8 md:p-10 text-white relative overflow-hidden`} style={{ background: path.headerColor || '#2563EB' }}>
+      <div 
+        className={`p-8 md:p-10 text-white relative overflow-hidden ${path.headerColor && path.headerColor.startsWith('bg-') ? path.headerColor : ''}`} 
+        style={path.headerColor && !path.headerColor.startsWith('bg-') ? { background: path.headerColor } : (!path.headerColor ? { background: '#2563EB' } : {})}
+      >
         <div className="absolute top-0 right-0 p-10 opacity-10"><Star className="w-24 h-24" /></div>
         <div className="relative z-10 space-y-4 max-w-2xl">
            <div className="flex items-center gap-2">
