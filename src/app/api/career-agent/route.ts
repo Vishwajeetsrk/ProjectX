@@ -93,7 +93,7 @@ export async function POST(req: NextRequest) {
       ...messages.map(m => ({ role: m.role, content: m.content }))
     ], { jsonMode: true });
 
-    return NextResponse.json({ ...parseJSON(content), _provider: provider });
+    return NextResponse.json({ ...parseJSON<any>(content), _provider: provider });
   } catch (error: any) {
     console.error('[career-agent] Error:', error);
     return NextResponse.json({ 

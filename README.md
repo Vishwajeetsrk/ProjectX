@@ -1,118 +1,137 @@
-# 🌙 DreamSync — Warm Career Intelligence & Support Platform
+# 🌙 DreamSync — Warm Career Intelligence & Empathetic Support Platform
 
 > **Empowering career journeys for students and care-experienced youth. Find your path, build your professional identity, and grow with empathetic AI guidance.**
 
-### 🌐 [Live Deployment](https://dreamssync.vercel.app/) | 🏠 [Home Portal](https://dreamssync.vercel.app/)
+### 🌐 [Live Deployment Portal](https://dreamssync.vercel.app/) | 🏠 [Production Home Portal](https://dreamssync.vercel.app/)
 
 ---
 
 ## 🏗️ Human-Centric Design System
-DreamSync has transitioned from aggressive technical aesthetics to a **Warm, Accessible, and NGO-Inspired** architecture. This design prioritizes:
-- **Trust & Clarity**: Soft rounded geometry (`rounded-[3rem]`) and a calming `Stone-50` color palette.
-- **Accessibility**: High-readability typography (`Inter`) and simplified navigation for users of all digital literacy levels.
-- **Supportive UX**: Empathetic micro-interactions and high-fidelity visual feedback that feels human, not robotic.
+DreamSync features an **NGO-Inspired, Supportive, and Highly Accessible** architecture. This design prioritizes:
+- **Trust & Clarity**: Calming `Stone-50` and `Emerald` color palettes, mixed with soft organic shapes (`rounded-[3rem]`) to reduce digital anxiety.
+- **High Readability**: High-legibility modern typography (`Inter`, `Outfit`) and highly contrastive buttons suitable for users of all digital literacy levels.
+- **Empathetic UX**: Interactive micro-animations (via `Framer Motion`) providing premium visual feedback that feels organic and supportive.
 
 ---
 
-## ✨ Core Support Modules
-1.  **🧠 Ikigai Architect**: Discovery tools for the intersection of Passion, Skills, Market, and Income.
-2.  **📄 AI Resume Forge**: Guided resume building with professional clarity.
-3.  **🤖 AI Career Guide**: Empathetic AI partner for job advice and roadmaps.
-4.  **🗺️ Skills & Document Roadmap**: Localized pathways for skills and identity nodes (Aadhaar, PAN, etc.).
-5.  **💼 LinkedIn Pro Optimizer**: Profile tuning with high-performance professional summaries.
-6.  **🌱 Community Hub**: Safe ecosystem forpeer connection and local activities.
-7.  **🖼️ Portfolio Engine**: Instant responsive web portfolios from professional data.
+## ✨ 9 Core Support Modules
+
+1. **🧠 Ikigai Architect**: Discover your professional alignment at the intersection of Passion, Skills, Market, and Income with automated Venn diagram rendering.
+2. **📄 AI Resume Forge**: Guidance-driven resume editor featuring live layout previewing, custom color themes, and direct printer-ready PDF export.
+3. **🛡️ ATS Resume Score Checker**: Drag-and-drop resume scanner that checks keywords and structural alignment against target job descriptions, providing instant rewrite indicators.
+4. **🤖 AI Career Guide & Coach**: Empathetic AI coach delivering real-time salary insights, localized Indian job postings, and structured 90-day progress roadmaps.
+5. **💼 LinkedIn Pro Profile Optimizer**: Instantly tune profile headlines, "About" bios, and personalized outreach networking templates.
+6. **🗺️ Skills & Document Roadmap**: Milestone progress timelines paired with a dedicated guide on obtaining essential Indian documents (Aadhaar, PAN, E-Shram, etc.).
+7. **🌱 Peer Community Hub**: A safe ecosystem for connecting with peer circles, digital mentors, and local NGO career events.
+8. **🖼️ Dynamic Stand-alone Portfolio Engine**: Instantly generate responsive web portfolios in 4 distinct themes: *Minimal Dev*, *Neo-Brutalism*, *Glass Dark*, and *Data Pro (Vishwa)*.
+9. **🌸 Serenity AI Mental Health Companion**: Empathetic voice & text buddy for burnout and stress, with local helplines and interactive vocal speech output (TTS/STT).
 
 ---
 
-## 🛠 Modern Technical Stack
-- **Framework**: [Next.js 15+](https://nextjs.org/)
-- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
-- **Animation**: [Framer Motion 12+](https://www.framer.com/motion/)
-- **Database**: [Firebase Cloud Firestore](https://firebase.google.com/)
-- **Authentication**: **Firebase Secure Auth** (Google & GitHub)
-- **AI Inference**: [Groq](https://groq.com/) & [Llama 3]
+## 🛠️ Modern Technical Stack
+
+- **Frontend Framework**: [Next.js 16.2.2 (Turbopack Enabled)](https://nextjs.org/)
+- **Core Library**: [React 19.2.4](https://react.dev/)
+- **Styling Core**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Motion & Transition**: [Framer Motion 12+](https://www.framer.com/motion/)
+- **Database Engine**: [Firebase Cloud Firestore](https://firebase.google.com/)
+- **Authentication**: **Firebase Secure Auth** (Google, GitHub, and Custom Credentials)
+- **High Availability Cache**: [Upstash Redis & Ratelimit](https://upstash.com/)
+- **AI Inference Pipeline**: [OpenRouter API (Llama-3-70B)](https://openrouter.ai/) & [Google Gemini]
+- **API Form Handler**: [Web3Forms API](https://web3forms.com/)
 
 ---
 
-## 🔑 Infrastructure Requirements
-To run this platform, you need to configure the following services:
+## 🔑 Infrastructure & API Requirements
 
-| Service | Requirement | Link |
-| :--- | :--- | :--- |
-| **Firebase** | API Key, Auth Domain, Project ID | [Console](https://console.firebase.google.com/) |
-| **OpenRouter** | AI Model Access (Llama 3) | [OpenRouter](https://openrouter.ai/) |
-| **Web3Forms** | Contact Form Logic | [Access Key](https://web3forms.com/) |
-| **GitHub/Google** | OAuth App Credentials | [GitHub Developer](https://github.com/settings/developers) |
+To operate this platform locally or in production, acquire API credentials for the following services:
+
+| Service Provider | Config Details | Purpose | Link |
+| :--- | :--- | :--- | :--- |
+| **Firebase Console** | Web App API Keys, Project IDs, Auth Domain | Authentication & User Firestore DB | [Firebase](https://console.firebase.google.com/) |
+| **Upstash Redis** | Rest URL & Rest Token | Rate limiting & feature usage caching | [Upstash Console](https://console.upstash.com/) |
+| **OpenRouter** | `OPENROUTER_API_KEY` | Model endpoints for resume advice & coaching | [OpenRouter](https://openrouter.ai/) |
+| **Web3Forms** | Contact Form Token Key | Delivers contact/support messages | [Web3Forms](https://web3forms.com/) |
+| **Serper API** | `SERPER_API_KEY` (Optional) | Powers live Indian job search indexing | [Serper.dev](https://serper.dev/) |
 
 ---
 
-## 🏁 Local Development Setup
+## 🏁 Local Development & Setup Guide
 
-### 1. Prerequisite Checks
-- **Node.js**: Install version 20.x or higher from [nodejs.org](https://nodejs.org/).
-- **Git**: Ensure Git is installed for repository synchronization.
+### 1. Software Prerequisites
+- **Node.js**: Install version `20.x` or `22.x` (Recommended) from [Node.js Official Website](https://nodejs.org/).
+- **Git**: Command line tool for version control.
+- **VS Code**: Recommended Editor.
 
-### 2. Synchronization & Dependencies
+### 2. Synchronization & Dependency Installation
+Clone the repository and install all required modules using clean legacy peer dependencies:
 ```bash
 # Clone the repository
-git clone https://github.com/Vishwajeetsrk/ProjectX.git
-cd ProjectX
+git clone https://github.com/Vishwajeetsrk/DreamSync.git
+cd DreamSync
 
-# Install required packages
+# Install dependency modules securely
 npm install --legacy-peer-deps
 ```
 
-### 3. Environment Configuration
-Create a `.env.local` file in the root directory and populate it with the following:
+### 3. Environment Variables Setup
+Create a `.env.local` file in the project root directory and insert your secure API keys:
 ```env
-NEXT_PUBLIC_FIREBASE_API_KEY=your_key
+# Firebase Configuration
+NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
 NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
 NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_id
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
 NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
 
-# AI & Forms
-OPENROUTER_API_KEY=your_openrouter_key
-NEXT_PUBLIC_WEB3FORMS_KEY=your_form_key
+# Upstash Cache & Rate Limit Configurations
+UPSTASH_REDIS_REST_URL=https://your-database-id.upstash.io
+UPSTASH_REDIS_REST_TOKEN=your_upstash_token
+
+# AI, Search & Forms Integrations
+OPENROUTER_API_KEY=your_openrouter_api_key
+NEXT_PUBLIC_WEB3FORMS_KEY=your_web3forms_token
+SERPER_API_KEY=your_serper_api_key
 ```
 
-### 4. Execute Protocol
+### 4. Run the Dev Protocol
+Launch the blazing-fast local developer server powered by Next.js Turbopack:
 ```bash
-# Start the development server
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) to view the portal.
+Open [http://localhost:3000](http://localhost:3000) in your web browser to access the portal.
 
 ---
 
 ## 🚀 Live Deployment Protocol (Vercel)
 
-1.  **Push to GitHub**: Ensure your code is synchronized with your GitHub repository.
-2.  **Import to Vercel**:
-    - Sign in to [Vercel](https://vercel.com/).
-    - Click **"New Project"** and select the `ProjectX` repository.
-3.  **Configure Environment Variables**:
-    - During the build settings, add all keys from your `.env.local` to the "Environment Variables" section.
-4.  **Deploy**: Click **"Deploy"**. Vercel will launch your platform on a global edge network.
-5.  **Whitelist Domains**:
-    - Go to **Firebase Console > Authentication > Settings > Authorized Domains**.
-    - Add your Vercel URL (e.g., `project-x.vercel.app`) to the list.
+1. **GitHub Push**: Commit and push your verified code changes to your GitHub branch.
+2. **Deploy to Vercel**:
+   - Sign in to the [Vercel Dashboard](https://vercel.com/).
+   - Click **"Add New"** > **"Project"** and import the `DreamSync` repository.
+3. **Configure Settings**:
+   - Framework preset: **Next.js**.
+   - Build command: `next build`.
+   - Node version: `20.x` or `22.x`.
+4. **Setup Environment Variables**:
+   - Copy all variables from your local `.env.local` file and add them directly in the Vercel project environment settings.
+5. **Launch**: Click **"Deploy"**. Vercel will build and host your platform on global edge networks.
+6. **Whitelist Domains**:
+   - Navigate to **Firebase Console** > **Authentication** > **Settings** > **Authorized Domains**.
+   - Add your newly deployed Vercel URL (e.g., `dreamssync.vercel.app`) to authorize users to sign in.
 
 ---
 
 ## 🧩 Recommended VS Code Extensions
-For the best development experience, we recommend installing these extensions:
-- **Tailwind CSS IntelliSense**: For real-time design token suggestions.
-- **ESLint & Prettier**: To maintain high-fidelity code integrity.
-- **GitLens**: For advanced version control visualization.
-- **Lucide Icon Searcher**: To easily find support module icons.
+
+Install the following extensions in Visual Studio Code for an optimized developer workflow:
+- **Tailwind CSS IntelliSense**: For real-time utility autocomplete.
+- **ESLint**: Real-time code quality and typescript constraint validation.
+- **Prettier - Code Formatter**: Auto-formats code on save.
+- **GitLens**: Supercharges Git tracking right inside your files.
+- **Lucide Icon Searcher**: Easily discover supportive icons to match custom modules.
 
 ---
-
-## 📄 Security & Privacy
-- **Identity Integrity**: OAuth 2.0 protocols for zero-password friction.
-- **Protocol Safety**: `aiGuard` filtering ensures all career advice is ethical and supportive.
 
 © 2026 DREAMSYNC. EMPOWERING FUTURES. HUMAN_CENTRIC. IDENTITY_SECURED.

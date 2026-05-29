@@ -191,8 +191,6 @@ export async function POST(req: NextRequest) {
       }, { status: 503 });
     }
 
-    return NextResponse.json(result);
-
   } catch (error: any) {
     console.error('Portfolio gen error:', error);
     return NextResponse.json({ error: error.message || 'Server Error' }, { status: 500 });

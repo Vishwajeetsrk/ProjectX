@@ -128,18 +128,21 @@ const translations: Record<Language, Record<string, string>> = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>('en');
-
-  useEffect(() => {
-    const saved = localStorage.getItem('dream_sync_lang') as Language;
-    if (saved && (saved === 'en' || saved === 'hi')) {
-      setLanguageState(saved);
+  const [language, setLanguageState] = useState<Language>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('dream_sync_lang') as Language;
+      if (saved && (saved === 'en' || saved === 'hi')) {
+        return saved;
+      }
     }
-  }, []);
+    return 'en';
+  });
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    localStorage.setItem('dream_sync_lang', lang);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('dream_sync_lang', lang);
+    }
   };
 
   const t = (key: string) => {

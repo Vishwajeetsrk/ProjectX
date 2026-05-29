@@ -4,7 +4,7 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   HeartHandshake, Send, Mic, MicOff, Volume2, VolumeX,
-  RotateCcw, Phone, PlayCircle, StopCircle, MessageCircle, Globe, ChevronDown
+  RotateCcw, Phone, PlayCircle, StopCircle, MessageCircle, Globe, ChevronDown, AlertCircle
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { validateCareerInput } from '@/lib/aiGuard';
