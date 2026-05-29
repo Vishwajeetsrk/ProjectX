@@ -55,6 +55,17 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             });
           }
           setLoading(false);
+        }, (error) => {
+          console.error('[AuthContext] onSnapshot permission/read error:', error);
+          // Fallback to local profile based on Auth state if Firestore permissions fail
+          setUserData({
+            name: currentUser.displayName || currentUser.email?.split('@')[0],
+            email: currentUser.email,
+            avatar_url: currentUser.photoURL || '',
+            plan: 'free',
+            db_error: true
+          });
+          setLoading(false);
         });
       } else if (sessionStatus !== 'loading') {
         // If no Firebase user, check for NextAuth session
@@ -84,6 +95,17 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 await setDoc(docRef, newUserData);
                 setUserData(newUserData);
               }
+              setUser(session.user);
+              setLoading(false);
+            }).catch((err) => {
+              console.error('[AuthContext] NextAuth Firestore error:', err);
+              setUserData({
+                name: session.user?.name,
+                email: session.user?.email,
+                avatar_url: session.user?.image,
+                plan: 'free',
+                db_error: true
+              });
               setUser(session.user);
               setLoading(false);
             });
